@@ -3,7 +3,7 @@ const connectDB = require('./db.js');
 const path = require('path');
 const Countries = require('./models/Countries.js');
 const User = require('./models/User.js');
-const { check, validationResult } = require('express-validator/check');
+const { check, validationResult } = require('express-validator');
 
 
 const app = express();
@@ -22,6 +22,22 @@ app.get('/', async (req, res) => {
   const countries = await Countries.find();
   res.send(countries);
 });
+
+// Get Country by name
+app.get('/:ISOCode', async (req, res) => {
+  try {
+    const country = await Countries.findOne({ISOCode: req.params.ISOCode.toUpperCase()});
+
+    if (!country) {
+      return res.status(400).json('No country found in database');
+    }
+
+    res.json(country);
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+})
 
 // User registration
 app.post('/join',[
@@ -43,7 +59,7 @@ app.post('/join',[
     }
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error')
+    res.status(500).send('Server error');
   }
 
   user = new User({
@@ -81,7 +97,7 @@ app.post('/login', [
 
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error')
+    res.status(500).send('Server error');
   }
 });
 
