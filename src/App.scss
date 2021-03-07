@@ -24,7 +24,7 @@ body {
 .container {
 	max-width: 1720px;
 	
-	&.main{
+	&.body{
 	background: url('./assets/img/Vector\ 1.png')no-repeat;
 	opacity: 0.5;
 	background-size: 1920px 535px;
@@ -73,8 +73,8 @@ body {
 	}
 }
 
-.main {
-	.main-title {
+.body {
+	.body-title {
 		color:black;
 		margin-left: 160px;
 		max-width: 780px;

@@ -1,11 +1,11 @@
 import React from "react";
 import CountryCard from "./CountryCard";
 
-const Main = () => {
+const Body = () => {
   return (
-    <div className="container main">
-      <main className={"main"}>
-        <div className="main-title">
+    <div className="container body">
+      <main className={"body"}>
+        <div className="body-title">
           <h1 className="title">Как прекрасен этот мир, посмотри</h1>
           <h2 className="subtitle">Узнавай. Путешествуй. Делись.</h2>
         </div>
@@ -27,4 +27,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Body;
