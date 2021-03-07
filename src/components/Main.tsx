@@ -3,7 +3,7 @@ import CountryCard from "./CountryCard";
 
 const Main = () => {
   return (
-    <div className="container">
+    <div className="container main">
       <main className={"main"}>
         <div className="main-title">
           <h1 className="title">Как прекрасен этот мир, посмотри</h1>
@@ -14,12 +14,12 @@ const Main = () => {
             КУДА ПОЕДЕМ?
           </h3>
           <div className="countries-grid">
-            <CountryCard/>
-            <CountryCard/>
-            <CountryCard/>
-            <CountryCard/>
-            <CountryCard/>
-            <CountryCard/>
+            <CountryCard />
+            <CountryCard />
+            <CountryCard />
+            <CountryCard />
+            <CountryCard />
+            <CountryCard />
           </div>
         </div>
       </main>
