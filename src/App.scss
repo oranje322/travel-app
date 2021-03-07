@@ -1,0 +1,143 @@
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+body {
+
+}
+
+.app {
+	background: url('./assets/img/background.png') 0 0/1920px 700px no-repeat;
+}
+
+.container {
+	max-width: 1720px;
+	margin: 0 auto;
+
+
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.logo {
+		max-width: 240px;
+	}
+
+	.side-block {
+
+		display: flex;
+		align-items: center;
+
+		.search-input {
+			padding: 9px 6px;
+			background: rgba(239, 239, 239, 0.49);
+			border: none;
+			outline: none;
+		}
+		.select-lang {
+			padding: 10px;
+			margin-left: 16px;
+			background: rgba(239, 239, 239, 0.49);
+			border: none;
+			outline: none;
+		}
+		.user-img {
+			width: 40px;
+			margin-left: 16px;
+		}
+	}
+}
+
+.main {
+
+	.main-title {
+		color: #2E2B2B;
+		margin-left: 160px;
+		max-width: 780px;
+		.title {
+			font-size: 80px;
+			font-weight: 700;
+		}
+		.subtitle {
+			font-size: 40px;
+			font-weight: 400;
+		}
+	}
+	.countries {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 400px;
+		flex-direction: column;
+
+		.countries-title {
+				font-size: 70px;
+				font-weight: 400;
+		}
+		.countries-grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(auto-fill, 1fr);
+			grid-column-gap: 160px;
+			grid-row-gap: 130px;
+
+			.country-card {
+				max-width: 735px;
+				position: relative;
+
+				.card-img {
+
+				}
+				.card-text {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+
+					color: #FFFAFA;
+					text-shadow: 0px 4px 4px #2E2B2B;
+					font-weight: 500;
+					font-size: 120px;
+				}
+			}
+
+		}
+	}
+}
+
+.footer {
+	margin-top: 40px;
+	background: #F5E9E0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.git-block {
+		margin-left: 70px;
+		padding: 30px 0;
+
+		a{
+			text-decoration: none;
+			color: black;
+			margin-left: 10px;
+			font-weight: 400;
+			font-size: 20px;
+		}
+
+	}
+	.course-block {
+		display: flex;
+		margin-right: 100px;
+		align-items: center;
+		font-size: 20px;
+	}
+}
+
+
+
+
