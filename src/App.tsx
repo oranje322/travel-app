@@ -1,21 +1,22 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
 import "./App.scss";
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Footer from "./components/Footer";
+import Main from "./pages/Main";
+import Countries from "./pages/Countries";
 
 const App = () => {
   return (
-    <div className={"app"}>
-
-      <Header/>
-      <Main/>
-      <Footer/>
-
-    </div>
-
-  )
-    ;
+    <>
+      <Switch>
+        <Route path={"/countries"}>
+          <Countries/>
+        </Route>
+        <Route exact path={"/"}>
+          <Main/>
+        </Route>
+      </Switch>
+    </>
+  );
 };
 
 export default App;
