@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&family=Playfair+Display:wght@400;500&family=Roboto:wght@300&display=swap');
+
 $dark-grey: #2E2B2B;
 
 @mixin fonts($family, $weight, $size ) {
@@ -6,7 +7,11 @@ $dark-grey: #2E2B2B;
 	font-weight: $weight;
 	font-size: $size;
 }
-
+*{
+    box-sizing: border-box;
+    padding: 0;
+    justify-content: center;
+}
 select {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -18,21 +23,20 @@ body {
 }
 
 .app {
-	background: url('./assets/img/background.png') 0 0/1920px 700px no-repeat;
+	background: url('./assets/img/pic.png') no-repeat;
+	background-size: 1920px 770px;
+	overflow: hidden;
+
 }
 
 .container {
-	max-width: 1720px;
-	
+		max-width: 172rem;
 	&.main{
-	background: url('./assets/img/Vector\ 1.png')no-repeat;
-	opacity: 0.5;
-	background-size: 1920px 535px;
-	max-width: 1920px;
+		margin: 0 7rem;
 	}
 	&.header{
-	margin: 0 100px;
-	display: block;
+		margin: 0 100px;
+		display: block;
 	}
 
 }
@@ -43,7 +47,7 @@ body {
 	align-items: center;
 
 	.logo {
-		max-width: 240px;
+		max-width: 24rem;
 	}
 
 	.side-block {
@@ -75,25 +79,34 @@ body {
 
 .main {
 	.main-title {
-		color:black;
-		margin-left: 160px;
-		max-width: 780px;
+		color: $dark-grey;
+		display: flex;
+		flex-direction: column;
+		margin: 0rem 10rem;
+		max-width: 850px;
 		.title {
-		@include fonts(Playfair, 500, 80px);
+		@include fonts(Playfair, 500, 90px);
+		line-height: 6.5rem;
 		}
 		.subtitle {
 		@include fonts(Montserrat, 400, 40px);
+		margin: 0;
 		}
 	}
 	.countries {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-top: 350px;
+		margin-top: 250px;
 		flex-direction: column;
-
+		position: relative;
+			&:before {
+				content: url('./assets/img/vecror-wave.png');
+				position: absolute;
+			}
 		.countries-title {
-			@include fonts(Montserrat, 400, 70px)
+			@include fonts(Montserrat, 400, 70px);
+			color: $dark-grey;
 		}
 		.countries-grid {
 			display: grid;
@@ -103,22 +116,29 @@ body {
 			grid-row-gap: 130px;
 
 			.country-card {
-				max-width: 735px;
+				max-width: 800px;
+				height: 350px;
 				position: relative;
-
+				overflow:hidden;
+				box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 6px 8px 10px 1px rgba(0, 0, 0, 0.25);
 				.card-img {
-
+					width: 100%;
+					height: 100%;
+					filter: blur(0.1rem);
+					transition: all 0.5s ease-in;
+					&:hover{
+						filter: blur(0);
+						transform: scale(1.1);
+					}
 				}
 				.card-text {
+					@include fonts(Roboto, 400, 120px);
 					position: absolute;
 					top: 50%;
 					left: 50%;
 					transform: translate(-50%, -50%);
-
 					color: #FFFAFA;
-					text-shadow: 0px 4px 4px #2E2B2B;
-					font-weight: 500;
-					font-size: 120px;
+					text-shadow: 0px 4px 4px $dark-grey;
 				}
 			}
 
@@ -127,7 +147,7 @@ body {
 }
 
 .footer {
-	margin-top: 40px;
+	margin-top: 7rem;
 	background: #F5E9E0;
 	display: flex;
 	justify-content: space-between;
@@ -136,13 +156,11 @@ body {
 	.git-block {
 		margin-left: 70px;
 		padding: 30px 0;
-
 		a{
+			@include fonts(Roboto, 400, 20px);
 			text-decoration: none;
 			color: black;
 			margin-left: 10px;
-			font-weight: 400;
-			font-size: 20px;
 		}
 
 	}
@@ -154,6 +172,36 @@ body {
 	}
 }
 
-
+@media (max-width: 1360px){
+	.main {
+		&-title {
+			margin: 3rem 8rem;
+			max-width: 600px;
+			.title {
+			@include fonts(Playfair, 500, 65px);
+			line-height: 5rem;
+			}
+			.subtitle {
+			@include fonts(Montserrat, 400, 35px);
+			margin: 0;
+			}
+		}
+		.countries{
+			margin-top: 270px;
+			.countries-title{
+				font-size: 65px;
+			}
+			.countries-grid{
+				.country-card{
+					max-height: 300px;
+					.card-text{
+						font-size: 90px;
+					}
+				}
+			}
+		}
+		
+	}
+}
 
 
