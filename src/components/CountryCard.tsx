@@ -1,13 +1,23 @@
 import React from "react";
-import africaImg from "../assets/img/africa.jpg";
+import {Link} from "react-router-dom";
+import {ICountry} from "../redux/reducers/reducerTypes";
 
-const CountryCard = () => {
-  return (
-    <div className="country-card">
-      <img className={"card-img"} src={africaImg} alt="card" />
-      <span className="card-text">КЕНИЯ</span>
-    </div>
-  );
+interface ICountryCardProps {
+	data: ICountry
+}
+
+const CountryCard = ({data}: ICountryCardProps) => {
+
+	const {country, imageURL, ISOCode} = data
+
+	return (
+		<Link to={`/countries/${ISOCode}`}>
+			<div className="country-card">
+				<img className={"card-img"} src={imageURL} alt={country}/>
+				<span className="card-text">{country}</span>
+			</div>
+		</Link>
+	);
 };
 
 export default CountryCard;

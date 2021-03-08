@@ -7,7 +7,6 @@ import { setCountries } from "../actions/actions";
 export const setCountriesThunk = (): ThunkAction<void, IState, unknown, ActionsTypes> => {
   return async (dispatch) => {
     let response = await Api.getCountries();
-    console.log(response)
     dispatch(setCountries(response.data));
   };
 };
