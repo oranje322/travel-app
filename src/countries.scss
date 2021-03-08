@@ -1,5 +1,8 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
 
+// body{
+// 	background-image: url();
+// }
 .countries {
 	display: flex;
 	flex-direction: column;
@@ -7,8 +10,6 @@
 	.widgets-block {
 		height: 350px;
 	}
-
-
 	.country-img {
 		width: 1900px;
 		max-height: 750px;

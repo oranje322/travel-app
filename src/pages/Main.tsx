@@ -6,9 +6,10 @@ import Footer from "../components/Footer";
 const Main = () => {
   return (
     <div className={"app"}>
-      <Header inputVisible/>
-      <Body/>
-      <Footer/>
+      {/* <Header inputVisible={true} /> */}
+      <Header />
+      <Body />
+      <Footer />
     </div>
   );
 };

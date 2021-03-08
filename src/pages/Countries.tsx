@@ -23,17 +23,18 @@ const Countries = () => {
 
   return (
     <div className={"countries"}>
-      <Header inputVisible={false}/>
+      {/* <Header inputVisible={false} /> */}
+      <Header />
       <div className="widgets-block">
         блок с виджетами
       </div>
       <div className={"img-block"}>
-        <img className={"country-img"} src={countryImg} alt="country-img"/>
+        <img className={"country-img"} src={countryImg} alt="country-img" />
       </div>
       <div className="video-block">
         <iframe width="1000" height="420" src="https://www.youtube.com/embed/YrNxPr4PKQo" frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen></iframe>
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen></iframe>
       </div>
       <div className="desc-block">
         <p className="desc-text">
