@@ -1,0 +1,59 @@
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+.countries {
+	display: flex;
+	flex-direction: column;
+
+	.widgets-block {
+		height: 350px;
+	}
+
+
+	.country-img {
+		width: 1900px;
+		max-height: 750px;
+		filter: drop-shadow(10px 10px 10px #666B7B);
+	}
+
+	.video-block {
+		margin-top: 130px;
+		align-self: center;
+	}
+
+	.desc-block {
+		margin-top: 100px;
+		align-self: center;
+		border-radius: 40px;
+		background: #F8F8EA;
+		max-width: 1560px;
+
+		.desc-text {
+			padding: 20px 10px;
+			text-align: center;
+		}
+	}
+
+	.gallery-block {
+		margin-top: 130px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.gallery-title {
+			margin-bottom: 64px;
+		}
+	}
+
+	.map {
+		margin-top: 200px;
+		display: flex;
+		justify-content: center;
+	}
+
+	.subtitle {
+		font-family: Manrope;
+		font-weight: 300;
+		font-size: 70px;
+	}
+}
+
