@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&family=Playfair+Display:wght@400;500&family=Roboto:wght@300&display=swap');
 
 $dark-grey: #2E2B2B;
+
 :root{
-		font-size: 16px;
+	font-size: 16px;
 }
 @mixin fonts($family, $weight, $size ) {
 	font-family: $family;
@@ -20,8 +21,8 @@ select {
 	appearance: none;
 }
 
-body {
-
+body{
+	background-image: url('./assets/img/back-full.jpg');
 }
 
 .app {

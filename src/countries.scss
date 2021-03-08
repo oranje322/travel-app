@@ -1,6 +1,33 @@
 @import "~react-image-gallery/styles/scss/image-gallery.scss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&family=Manrope:wght@200;300&display=swap');
+//colors:
+$light: #F8F8EA;
+$dark-grey: #2E2B2B;
+
+@mixin fonts($family, $weight, $size ) {
+	font-family: $family;
+	font-weight: $weight;
+	font-size: $size;
+}
+@mixin widget() {
+	background-color: $light;
+	padding: 1rem 4rem;
+	@include fonts(Manrope, 200, 3.125rem);
+	box-shadow: 4px 5px 4px 3px rgba(0, 0, 0, 0.25),
+	6px 8px 10px 1px rgba(0, 0, 0, 0.25);
+}
+@mixin flex($direction,$content, $align) {
+	flex-direction: $direction;
+	align-items: $align;
+	justify-content: $content;
+}
 *{
-	overflow-x: hidden;
+    box-sizing: border-box;
+    padding: 0;
+	justify-content: center;
+}
+:root{
+	font-size: 16px;
 }
 body{
 	background-image: url('./assets/img/back-full.jpg');
@@ -8,14 +35,52 @@ body{
 .countries {
 	display: flex;
 	flex-direction: column;
-
+	overflow: hidden;
+	position: relative;
+	&:before{
+			content: url('./assets/img/vecror-wave-country.png');
+			position: absolute;
+			z-index: 1;
+			top:10rem;
+			
+		}
+		 > *{
+			z-index: 5;	
+		}
 	.widgets-block {
-		height: 350px;
+		height: auto;
+		display: flex;
+		justify-content: space-around;
+		z-index: 2;
+		&_info{
+			width: 21rem;
+			p{
+				@include widget();
+			}
+		}
+		&_time{
+			width: 41rem;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			
+			p{
+				@include widget();
+				text-align: center;
+			}
+			h2{
+				@include fonts(Montserrat, 400, 5rem);
+			}
+		}
 	}
-	.country-img {
-		width: 100%;
+	.img-block {
+		display: flex;
+		justify-content: center;
 		max-height: 750px;
 		filter: drop-shadow(10px 10px 10px #666B7B);
+		img{
+			width: 90%;
+		}
 	}
 
 	.video-block {
@@ -33,6 +98,7 @@ body{
 		.desc-text {
 			padding: 20px 10px;
 			text-align: center;
+			@include fonts(Manrope, 300, 2.18rem)
 		}
 	}
 
@@ -44,9 +110,14 @@ body{
 
 		.gallery-title {
 			margin-bottom: 64px;
+			@include fonts(Manrope, 300, 4.375rem)
 		}
 	}
 
+	.image-gallery-content.fullscreen {
+	background: white
+	}
+	
 	.map {
 		margin-top: 200px;
 		display: flex;

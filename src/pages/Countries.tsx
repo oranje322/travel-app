@@ -24,9 +24,19 @@ const Countries = () => {
   return (
     <div className={"countries"}>
       <Header inputVisible={false} />
+
       <div className="widgets-block">
-        блок с виджетами
+        {/* блок с виджетами */}
+        <div className="widgets-block_info">
+          <p className="weather">&#9728; +20℃</p>
+          <p className="currency">1£ = 1.3$</p>
+        </div>
+        <div className="widgets-block_time">
+          <p className="time">15:00</p>
+          <h2 className="name">Россия, Москва</h2>
+        </div>
       </div>
+
       <div className={"img-block"}>
         <img className={"country-img"} src={countryImg} alt="country-img" />
       </div>
