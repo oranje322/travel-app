@@ -23,8 +23,7 @@ const Countries = () => {
 
   return (
     <div className={"countries"}>
-      {/* <Header inputVisible={false} /> */}
-      <Header />
+      <Header inputVisible={false} />
       <div className="widgets-block">
         блок с виджетами
       </div>
