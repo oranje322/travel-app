@@ -1,5 +1,23 @@
 const mongoose = require("mongoose");
 
+const AttractionSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  desc: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  imageURL: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+});
+
 const CountriesSchema = new mongoose.Schema({
   country: {
     type: String,
@@ -45,7 +63,7 @@ const CountriesSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  attractions: [],
+  attractions: [AttractionSchema],
 });
 
 module.exports = Countries = mongoose.model("countries", CountriesSchema);

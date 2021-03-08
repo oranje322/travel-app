@@ -3,6 +3,7 @@ const connectDB = require('./db.js');
 const path = require('path');
 const Countries = require('./models/Countries.js');
 const User = require('./models/User.js');
+const Ratings = require('./models/Ratings.js');
 const { check, validationResult } = require('express-validator');
 
 
@@ -18,13 +19,13 @@ app.use((req, res, next) => {
 });
 
 // Get Countries
-app.get('/', async (req, res) => {
+app.get('/countries', async (req, res) => {
   const countries = await Countries.find();
   res.send(countries);
 });
 
-// Get Country by name
-app.get('/:ISOCode', async (req, res) => {
+// Get Country by ISOCode
+app.get('/countries/:ISOCode', async (req, res) => {
   try {
     const country = await Countries.findOne({ISOCode: req.params.ISOCode.toUpperCase()});
 
@@ -37,7 +38,28 @@ app.get('/:ISOCode', async (req, res) => {
     console.error(err.message);
     res.status(500).send('Server error');
   }
-})
+});
+
+// Put attraction rating
+app.put('/rating', async (req, res) => {
+  try {
+    const rating = await Ratings.findOneAndUpdate(
+      { $and: [{attraction: req.body.attrId}, {email: req.body.email}] },
+      {
+        $set: {      
+          rating: req.body.rating,
+        }
+      },
+      { upsert: true }
+    )
+    await rating.save();
+    res.json(rating);
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 
 // User registration
 app.post('/join',[
