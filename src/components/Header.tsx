@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../assets/img/logo.png";
 import userImg from "../assets/img/log.png";
+import { Link } from "react-router-dom";
 
 interface IHeader {
   inputVisible: boolean;
@@ -10,9 +11,11 @@ const Header = ({ inputVisible }: IHeader) => {
   return (
     <div className="container header">
       <header className={"header"}>
-        <div className="logo-block">
-          <img className={"logo"} src={logo} alt="logo" />
-        </div>
+        <Link to={'/'}>
+          <div className="logo-block">
+            <img className={"logo"} src={logo} alt="logo" />
+          </div>
+        </Link>
         <div className="side-block">
           {
             inputVisible && <input className={"search-input"} placeholder={"поиск"} type="text" />
