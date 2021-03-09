@@ -12,8 +12,8 @@ $dark-grey: #2E2B2B;
 @mixin widget() {
 	background-color: $light;
 	padding: 1rem 4rem;
-	box-shadow: 4px 5px 4px 3px rgba(0, 0, 0, 0.25),
-	6px 8px 10px 1px rgba(0, 0, 0, 0.25);
+	box-shadow: 0.25rem 0.31rem 0.25rem 0.187rem rgba(0, 0, 0, 0.25),
+	0.375rem 0.5rem 0.625rem 0.06rem rgba(0, 0, 0, 0.25);
 }
 @mixin flex($direction,$content, $align) {
 	flex-direction: $direction;
@@ -90,7 +90,7 @@ body{
 	}
 
 	.desc-block {
-		margin-top: 100px;
+		margin: 6.25rem 3rem 0;
 		align-self: center;
 		border-radius: 40px;
 		background: #F8F8EA;
@@ -103,24 +103,70 @@ body{
 		}
 	}
 
+	//gallery
+	.slider{
+		width: 100%;
+	}
 	.gallery-block {
-		margin-top: 130px;
+		margin-top: 8.125rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 
 		.gallery-title {
-			margin-bottom: 64px;
+			margin-bottom: 4rem;
 			@include fonts(Manrope, 300, 4.375rem)
 		}
 	}
 
-	.image-gallery-content.fullscreen {
-	background: white
+	.image-gallery {
+		.image-gallery-using-mouse {
+		background: transparent;
+		}
+	}
+	.image-gallery-thumbnail{
+		.image-gallery-thumbnail-image{
+			width: auto;
+			max-width: 5.625rem;
+			height: 3.125rem;
+		}
+	}
+	.image-gallery-thumbnails-wrapper{
+		.bottom{
+			background: transparent;	
+		}
+	} 
+	.image-gallery-container{
+		position: relative;
+		img{
+			object-fit: cover;
+		}
+		.image-gallery-title{
+			position: absolute;
+			top: 3rem;
+			padding: 1rem;
+			top: 5%;
+			background: rgba(248, 248, 234, 0.4);
+			width: 100%;
+			color:white;
+			@include fonts(Montserrat, 300, 2rem);
+			padding: 2rem;
+			text-shadow: 0.1875rem 0.125rem 0.31rem rgb(34, 33, 33);
+		}
+		.image-gallery-description{
+			position: absolute;
+			bottom: 0;
+			background: rgba(85, 85, 85, 0.4);
+			width: 100%;
+			@include fonts(Montserrat, 300, 1.2rem);
+			padding: 2rem;
+			text-shadow: 0.1875rem 0.125rem 0.31rem rgb(34, 33, 33);
+		}
 	}
 	
+	
 	.map {
-		margin-top: 200px;
+		margin-top: 12.5rem;
 		display: flex;
 		justify-content: center;
 	}
@@ -128,7 +174,37 @@ body{
 	.subtitle {
 		font-family: Manrope;
 		font-weight: 300;
-		font-size: 70px;
+		font-size: 4.37rem;
 	}
 }
-
+@media (max-width: 1360px){
+	:root{
+		font-size: 12px;
+	}
+	.app {
+	background-size: 1360px 550px;
+	}
+	main{
+		margin: 0;
+	}
+	.countries{
+		.image-gallery-container{
+			.image-gallery-title{
+				@include fonts(Montserrat, 300, 3.5rem);
+			}
+			.image-gallery-description{
+				@include fonts(Montserrat, 300, 2.5rem);
+			}	
+		}
+	}
+}
+@media (max-width: 850px){
+	:root{
+		font-size: 9px;
+	}
+}
+@media (max-width: 400px){
+	:root{
+		font-size: 3px;
+	}
+}
