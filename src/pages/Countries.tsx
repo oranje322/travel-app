@@ -1,66 +1,78 @@
 import React from "react";
 import "../countries.scss";
 import Header from "../components/Header";
-import countryImg from "../assets/img/moscow.jpg";
 import ImageGallery from 'react-image-gallery';
+import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {IState} from "../redux/reducers/reducerTypes";
+
+interface paramTypes {
+	ISOCode: string
+}
+
+//todo пофиксить баг, если первый рендер был на этой странице - country undefined
+//todo пофиксить размеры картинок в галерее и добавить/стилизовать описание
+//todo видео с youtube вставляется не по прямой ссылке на видео, а по пути /embed/idVideo, в базу нужно вместо полного урла положить id
+//todo виджеты
 
 const Countries = () => {
 
-  const images = [
-    {
-      original: 'https://picsum.photos/id/1018/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1018/250/150/',
-    },
-    {
-      original: 'https://picsum.photos/id/1015/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1015/250/150/',
-    },
-    {
-      original: 'https://picsum.photos/id/1019/1000/600/',
-      thumbnail: 'https://picsum.photos/id/1019/250/150/',
-    },
-  ];
+	const {ISOCode} = useParams<paramTypes>()
 
-  return (
-    <div className={"countries"}>
-      <Header inputVisible={false} />
+	const country = useSelector((state: IState) => state.countries)
+		.filter(countryObj => countryObj.ISOCode === ISOCode)[0]
 
-      <div className="widgets-block">
-        {/* блок с виджетами */}
-        <div className="widgets-block_info">
-          <p className="weather">&#9728; +20℃</p>
-          <p className="currency">1£ = 1.3$</p>
-        </div>
-        <div className="widgets-block_time">
-          <p className="time">15:00</p>
-          <h2 className="name">Россия, Москва</h2>
-        </div>
-      </div>
 
-      <div className={"img-block"}>
-        <img className={"country-img"} src={countryImg} alt="country-img" />
-      </div>
-      <div className="video-block">
-        <iframe width="1000" height="420" src="https://www.youtube.com/embed/YrNxPr4PKQo" frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen></iframe>
-      </div>
-      <div className="desc-block">
-        <p className="desc-text">
-          Крупнейшая страна мира, расположенная в Восточной Европе и Северной Азии и омываемая водами Тихого и Северного Ледовитого океанов. Ландшафт России крайне разнообразен: на ее территории есть и тундра, и леса, и субтропические пляжи. В Большом театре в Москве и Мариинском театре в Санкт-Петербурге выступают балетные труппы, снискавшие всемирную славу. Санкт-Петербург, основанный императором Петром I, известен своим Зимним дворцом в стиле барокко, в котором размещается часть обширной художественной коллекции музея \"Эрмитаж\"."
-        </p>
-      </div>
-      <div className="gallery-block">
-        <h2 className={'subtitle'}>Что посмотреть?</h2>
-        <div className="slider">
-          <ImageGallery items={images} />
-        </div>
-      </div>
-      <div className="map">
-        <h2 className="subtitle">Где это?</h2>
-      </div>
-    </div>
-  );
+	const images = [
+		...country.attractions.map(attr => {
+				return {
+					original: attr.imageURL,
+					thumbnail: attr.imageURL,
+				}
+			}
+		)
+	];
+
+	return (
+		<div className={"countries"}>
+			<Header inputVisible={false}/>
+
+			<div className="widgets-block">
+				{/* блок с виджетами */}
+				<div className="widgets-block_info">
+					<p className="weather">&#9728; +20℃</p>
+					<p className="currency">1£ = 1.3$</p>
+				</div>
+				<div className="widgets-block_time">
+					<p className="time">15:00</p>
+					<h2 className="name">{`${country.country}, ${country.capital}`}</h2>
+				</div>
+			</div>
+
+			<div className={"img-block"}>
+				<img className={"country-img"} src={country.imageURL} alt="country-img"/>
+			</div>
+			<div className="video-block">
+				<iframe title={country.country} width="1000" height="420" src={`https://www.youtube.com/embed/${country.videoURL}`} frameBorder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowFullScreen></iframe>
+			</div>
+			<div className="desc-block">
+				<p className="desc-text">
+					{country.desc}
+				</p>
+			</div>
+			<div className="gallery-block">
+				<h2 className={'subtitle'}>Что посмотреть?</h2>
+				<div className="slider">
+					<ImageGallery items={images}/>
+				</div>
+			</div>
+			<div className="map">
+				<h2 className="subtitle">Где это?</h2>
+			</div>
+		</div>
+	);
 };
 
 export default Countries;

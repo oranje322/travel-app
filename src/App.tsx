@@ -12,12 +12,12 @@ const App = () => {
 
   useEffect(() => {
     dispatch(setCountriesThunk())
-  })
+  },[])
 
   return (
     <>
       <Switch>
-        <Route path={"/countries"}>
+        <Route path={"/countries/:ISOCode"}>
           <Countries/>
         </Route>
         <Route exact path={"/"}>
