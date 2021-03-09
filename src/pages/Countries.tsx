@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "../countries.scss";
 import Header from "../components/Header";
+import Clock from "../components/Clock";
 import ImageGallery from 'react-image-gallery';
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
@@ -60,7 +61,7 @@ const Countries = () => {
 					<p className="currency">1$ = {`${currency}${getSymbolFromCurrency(country.currency)}`}</p>
 				</div>
 				<div className="widgets-block_time">
-					<p className="time">15:00</p>
+					<p className="time"><Clock lang={'RU'} timeZone={country.timezone}/></p>
 					<h2 className="name">{`${country.country}, ${country.capital}`}</h2>
 				</div>
 			</div>

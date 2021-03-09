@@ -29,6 +29,10 @@ const CountriesSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  timezone: {
+    type: String,
+    required: true,
+  },
   coordinates: {
     type: [Number],
     required: true,
