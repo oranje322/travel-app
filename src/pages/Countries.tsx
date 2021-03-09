@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "../countries.scss";
 import Header from "../components/Header";
 import ImageGallery from 'react-image-gallery';
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {IState} from "../redux/reducers/reducerTypes";
+import {Api} from "../api/api";
 
 interface paramTypes {
 	ISOCode: string
@@ -16,11 +17,22 @@ interface paramTypes {
 //todo виджеты
 
 const Countries = () => {
-
 	const {ISOCode} = useParams<paramTypes>()
 
+	const lang = useSelector((state:IState) => state.lang)
 	const country = useSelector((state: IState) => state.countries)
 		.filter(countryObj => countryObj.ISOCode === ISOCode)[0]
+
+	const [temperature, setTemperature] = useState<number | string>('')
+	//насчет иконки хз, нужна ли она?
+	const [temperatureIcon, setTemperatureIcon] = useState<string>('')
+
+	useEffect(() => {
+		Api.getTemperature(country.coordinates, lang).then(r => {
+			setTemperature(Math.round(r.data.main.temp))
+			setTemperatureIcon(r.data.weather[0].icon)
+		})
+	},[])
 
 
 	const images = [
@@ -33,6 +45,8 @@ const Countries = () => {
 		)
 	];
 
+
+
 	return (
 		<div className={"countries"}>
 			<Header inputVisible={false}/>
@@ -40,7 +54,7 @@ const Countries = () => {
 			<div className="widgets-block">
 				{/* блок с виджетами */}
 				<div className="widgets-block_info">
-					<p className="weather">&#9728; +20℃</p>
+					<p className="weather"><img src={`http://openweathermap.org/img/wn/${temperatureIcon}.png`} alt=""/> {temperature} ℃</p>
 					<p className="currency">1£ = 1.3$</p>
 				</div>
 				<div className="widgets-block_time">
