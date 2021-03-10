@@ -176,16 +176,13 @@ body {
           filter: blur(0.1rem);
   -webkit-transition: all 0.5s linear;
   transition: all 0.5s linear;
-}
-
-.body .countries .countries-grid .country-card .card-img:hover {
   -webkit-filter: blur(0);
           filter: blur(0);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
 
-.body .countries .countries-grid .country-card .card-text {
+.body .countries .countries-grid .card-text {
   font-family: Roboto;
   font-weight: 400;
   font-size: 3.5rem;
@@ -198,7 +195,7 @@ body {
   text-shadow: 0px 4px 4px #2E2B2B;
 }
 
-.body .countries .countries-grid .country-card:hover .card-text {
+.body .countries .countries-grid:hover .card-text {
   font-size: 5.1rem;
   -webkit-transition: all 0.5s linear;
   transition: all 0.5s linear;

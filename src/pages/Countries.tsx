@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../countries.scss";
 import Header from "../components/Header";
+import { StarRating } from "../components/Rating";
 import ImageGallery from 'react-image-gallery';
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -37,6 +38,7 @@ const Countries = () => {
 	const myRenderItem = (props: any) => {
 		return <div className="image-gallery-container">
 			<img className="image-gallery-image" src={props.original} title="hello world" />
+			<StarRating totalStars={5} />
 			<span className="image-gallery-description">{props.description}
 			</span>
 			<p className="image-gallery-title">{props.originalTitle}</p>

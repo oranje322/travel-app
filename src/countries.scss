@@ -176,7 +176,53 @@ body{
 		font-weight: 300;
 		font-size: 4.37rem;
 	}
+//rating
+	.star {
+		cursor: pointer;
+		width: 2em;
+		height: 2em;
+		background-color: grey;
+		-webkit-clip-path: polygon(
+		50% 0%,
+		63% 38%,
+		100% 38%,
+		69% 59%,
+		82% 100%,
+		50% 75%,
+		18% 100%,
+		31% 59%,
+		0% 38%,
+		37% 38%
+		);
+		clip-path: polygon(
+		50% 0%,
+		63% 38%,
+		100% 38%,
+		69% 59%,
+		82% 100%,
+		50% 75%,
+		18% 100%,
+		31% 59%,
+		0% 38%,
+		37% 38%
+		);
+		//container
+		&-rating {
+		display: flex;
+		flex-flow: row-reverse;
+		position: absolute;
+		top: 0.5rem;
+		left: 3rem;
+		}
+	}
+	.star:hover,
+	.star:hover ~ .star,
+	.star.selected {
+		background-color: #f9cf02;
+	}
+
 }
+
 @media (max-width: 1360px){
 	:root{
 		font-size: 12px;
