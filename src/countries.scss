@@ -31,6 +31,11 @@ $dark-grey: #2E2B2B;
 body{
 	background-image: url('./assets/img/back-full.jpg');
 }
+
+.leaflet-container{
+	width: 800px;
+	height: 500px;
+}
 .countries {
 	display: flex;
 	flex-direction: column;
