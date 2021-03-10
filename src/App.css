@@ -119,7 +119,7 @@ body {
   margin: 0;
 }
 
-.body .countries {
+.body .countries-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -129,7 +129,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 250px;
+  margin-top: 19rem;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -137,19 +137,14 @@ body {
   position: relative;
 }
 
-.body .countries:before {
-  content: url("./assets/img/vecror-wave.png");
-  position: absolute;
-}
-
-.body .countries .countries-title {
+.body .countries-block .countries-title {
   font-family: Montserrat;
   font-weight: 400;
   font-size: 4.35rem;
   color: #2E2B2B;
 }
 
-.body .countries .countries-grid {
+.body .countries-block .countries-grid {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[2];
@@ -160,7 +155,7 @@ body {
   grid-row-gap: 8.125rem;
 }
 
-.body .countries .countries-grid .country-card {
+.body .countries-block .countries-grid .country-card {
   max-width: 50rem;
   height: 21.876rem;
   position: relative;
@@ -169,20 +164,23 @@ body {
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 6px 8px 10px 1px rgba(0, 0, 0, 0.25);
 }
 
-.body .countries .countries-grid .country-card .card-img {
+.body .countries-block .countries-grid .country-card .card-img {
   width: 100%;
   height: 100%;
   -webkit-filter: blur(0.1rem);
           filter: blur(0.1rem);
   -webkit-transition: all 0.5s linear;
   transition: all 0.5s linear;
+}
+
+.body .countries-block .countries-grid .country-card .card-img:hover {
   -webkit-filter: blur(0);
           filter: blur(0);
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
 
-.body .countries .countries-grid .card-text {
+.body .countries-block .countries-grid .card-text {
   font-family: Roboto;
   font-weight: 400;
   font-size: 3.5rem;
@@ -195,7 +193,7 @@ body {
   text-shadow: 0px 4px 4px #2E2B2B;
 }
 
-.body .countries .countries-grid:hover .card-text {
+.body .countries-block .countries-grid:hover .card-text {
   font-size: 5.1rem;
   -webkit-transition: all 0.5s linear;
   transition: all 0.5s linear;
@@ -247,9 +245,6 @@ body {
   main {
     margin: 0;
   }
-  .body .countries {
-    margin-top: 200px;
-  }
   .body .body-title {
     margin-left: 0;
     max-width: 40rem;
@@ -268,22 +263,19 @@ body {
 }
 
 @media (max-width: 800px) {
+  :root {
+    font-size: 8px;
+  }
+  .app {
+    background-size: 800px 450px;
+  }
   .body .body-title {
     margin-left: 0;
   }
-  .body .countries {
-    margin-top: 100px;
-  }
-  .body .countries .countries-grid {
+  .body .countries-block .countries-grid {
     -ms-grid-columns: (1fr)[1];
         grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 11rem;
-  }
-}
-
-@media (max-width: 800px) {
-  :root {
-    font-size: 8px;
   }
 }
 
@@ -293,6 +285,18 @@ body {
   }
   .app {
     background-size: 400px 150px;
+    position: relative;
+  }
+  .app::before {
+    content: url("./assets/img/vecror-wave-425.png");
+    top: 85rem;
+    position: absolute;
+  }
+  .app::after {
+    content: url("./assets/img/wave-425.png");
+    bottom: 85rem;
+    position: absolute;
+    z-index: 0;
   }
   .container.body {
     margin: 6rem 9rem;
@@ -308,19 +312,13 @@ body {
     max-width: 170px;
     margin-left: 4rem;
   }
-  .body .countries {
-    margin-top: 55px;
-  }
-  .body .countries:before {
-    content: url("./assets/img/vecror-wave360.png");
-    top: 25rem;
-  }
-  .body .countries .countries-grid {
+  .body .countries-block .countries-grid {
     -ms-grid-columns: (1fr)[1];
         grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 11rem;
+    z-index: 2;
   }
-  .body .countries .countries-grid .country-card {
+  .body .countries-block .countries-grid .country-card {
     max-width: 73rem;
     height: 38rem;
     -webkit-box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.25), 0px 1px 1px 1px rgba(0, 0, 0, 0.25);

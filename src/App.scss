@@ -29,10 +29,7 @@ body{
 	background: url('./assets/img/pic.png') no-repeat;
 	background-size: 1920px 770px;
 	overflow: hidden;
-
 }
-
-
 
 .container {
 	max-width: 172rem;
@@ -97,17 +94,13 @@ body{
 		margin: 0;
 		}
 	}
-	.countries {
+	.countries-block {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-top: 250px;
+		margin-top: 19rem;
 		flex-direction: column;
 		position: relative;
-			&:before {
-				content: url('./assets/img/vecror-wave.png');
-				position: absolute;
-			}
 		.countries-title {
 			@include fonts(Montserrat, 400, 4.35rem);
 			color: $dark-grey;
@@ -130,9 +123,10 @@ body{
 					height: 100%;
 					filter: blur(0.1rem);
 					transition: all 0.5s linear;
-		
+						&:hover{
 						filter: blur(0);
 						transform: scale(1.1);
+						}
 					}
 				}
 				.card-text {
@@ -193,9 +187,6 @@ body{
 		margin: 0;
 	}
 	.body{
-		.countries{
-			margin-top: 200px;
-		}
 		.body-title {
 			margin-left: 0;
 			max-width: 40rem;
@@ -211,22 +202,22 @@ body{
 }
 
 @media (max-width: 800px){
+	:root{
+			font-size: 8px;
+	}
+	.app {
+	background-size: 800px 450px;
+	}
 	.body{
 		.body-title{
 			margin-left: 0;
 		}
-		.countries{
-			margin-top: 100px;
+		.countries-block{
 			.countries-grid {
 				grid-template-columns: repeat(1, 1fr);
 				grid-row-gap: 11rem;
 			}
 		}
-	}
-}
-@media (max-width: 800px){
-	:root{
-			font-size: 8px;
 	}
 }
 
@@ -236,6 +227,18 @@ body{
 	}
 	.app {
 	background-size: 400px 150px;
+	position: relative;
+		&::before{
+			content: url('./assets/img/vecror-wave-425.png');
+			top: 85rem;
+			position: absolute;
+		}
+		&::after{
+			content: url('./assets/img/wave-425.png');
+			bottom: 85rem;
+			position: absolute;
+			z-index: 0;
+		}
 	}
 	.container{
 		&.body{
@@ -258,15 +261,11 @@ body{
 			max-width: 170px;
 			margin-left: 4rem;
 		}
-		.countries{
-			margin-top:55px;
-			&:before{
-				content: url('./assets/img/vecror-wave360.png');
-				top: 25rem;
-			}
+		.countries-block{
 			.countries-grid {
 			grid-template-columns: repeat(1, 1fr);
 			grid-row-gap: 11rem;
+			z-index: 2;
 				.country-card {
 					max-width: 73rem;
 					height: 38rem;

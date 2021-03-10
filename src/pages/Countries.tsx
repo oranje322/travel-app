@@ -10,6 +10,8 @@ import { IState } from "../redux/reducers/reducerTypes";
 import { Api } from "../api/api";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { Map } from "../components/Map";
+import Footer from "../components/Footer";
+
 
 interface paramTypes {
 	ISOCode: string
@@ -109,6 +111,7 @@ const Countries = () => {
 					</div>
 				</div>
 			</div>
+			<Footer />
 		</div>
 	);
 };
