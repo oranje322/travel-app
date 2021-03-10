@@ -6,6 +6,8 @@ import {IState} from "../redux/reducers/reducerTypes";
 const Body = () => {
 
 	const countriesMass = useSelector((state: IState) => state.countries)
+	const searchValue = useSelector((state: IState) => state.searchValue)
+	const filteredCountries = useSelector((state: IState) => state.filteredCountries)
 
 	return (
 		<div className="container body">
@@ -20,8 +22,10 @@ const Body = () => {
 					</h3>
 					<div className="countries-grid">
 						{
-							countriesMass.map((country, index) => <CountryCard key={index}
-																																 data={country}/>)
+							searchValue.length > 0 ? filteredCountries.map((country, index) => <CountryCard key={index}
+																																															data={country}/>)
+								: countriesMass.map((country, index) => <CountryCard key={index}
+																																		 data={country}/>)
 						}
 					</div>
 				</div>

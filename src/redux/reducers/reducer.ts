@@ -1,32 +1,48 @@
-import { IState } from "./reducerTypes";
-import { ActionsTypes } from "../actions/actionsTypes";
+import {IState} from "./reducerTypes";
+import {ActionsTypes} from "../actions/actionsTypes";
 
 export const SET_COUNTRIES = 'SET_COUNTRIES'
 export const SET_LANG = 'SET_LANG'
+export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE'
+export const SET_FILTERED_COUNTRIES = 'SET_FILTERED_COUNTRIES'
 
 const initialState: IState = {
-  countries: [],
-  lang: 'ru',
+	countries: [],
+	lang: 'ru',
+	searchValue: '',
+	filteredCountries: []
 }
 
 
 const reducer = (state = initialState, action: ActionsTypes): IState => {
-  switch (action.type) {
-    case SET_COUNTRIES: {
-      return {
-        ...state,
-        countries: action.payload
-      }
-    }
-    case SET_LANG: {
-      return {
-        ...state,
-        lang: action.payload
-      }
-    }
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case SET_COUNTRIES: {
+			return {
+				...state,
+				countries: action.payload
+			}
+		}
+		case SET_LANG: {
+			return {
+				...state,
+				lang: action.payload
+			}
+		}
+		case SET_SEARCH_VALUE: {
+			return {
+				...state,
+				searchValue: action.payload
+			}
+		}
+		case SET_FILTERED_COUNTRIES: {
+			return {
+				...state,
+				filteredCountries: action.payload
+			}
+		}
+		default:
+			return state;
+	}
 };
 
 export default reducer
