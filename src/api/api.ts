@@ -22,6 +22,24 @@ export const Api = {
 		)
 	},
 
+	login(body: string): Promise<any> {
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+			},
+		};
+		return instance.post("/login", body, config);
+	},
+
+	signup(body: string): Promise<any> {
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+			},
+		};
+		return instance.post("/join", body, config);
+  },
+
 	getСurrency(currency: string): Promise<any> {
 		return axios.get(`${currencyApiUrl}?symbols=${currency}&app_id=${apiKeyCurrency}`)
 	}

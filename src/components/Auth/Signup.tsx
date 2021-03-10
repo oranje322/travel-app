@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Input } from "@material-ui/core";
-import axios from "axios";
+import { Api } from '../../api/api';
 
 function Signup() {
   const history = useHistory();
@@ -17,28 +17,17 @@ function Signup() {
 
   const { email, password, name, photo } = formData;
 
-  const onSubmitHandler = (event: any) => {
+  const onSubmitHandler = async (event: any) => {
     event.preventDefault();
     setIsFromTouched(true);
     if (errors.length === 0) {
-      signup();
-    }
-  };
-
-  const signup = async () => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const body = JSON.stringify(formData);
-      await axios.post("http://localhost:5000/join", body, config);
-      localStorage.setItem("userData", JSON.stringify({ email, name, photo }));
-      history.push("/");
-    } catch (err) {
-      console.log(err);
-      setErrors(err.response.data.errors.map((err: any) => err.msg));
+      try {
+        let res = await Api.signup(JSON.stringify(formData));
+        localStorage.setItem("userData", JSON.stringify(res.data));
+        history.push("/");
+      } catch (err) {
+        setErrors(err.response.data.errors.map((err: any) => err.msg));
+      }
     }
   };
 

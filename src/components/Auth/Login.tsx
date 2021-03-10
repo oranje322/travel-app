@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Input } from "@material-ui/core";
-import axios from "axios";
+import { Api } from '../../api/api';
 
 const Login = () => {
   const history = useHistory();
@@ -13,20 +13,10 @@ const Login = () => {
   const [errors, setErrors] = useState<any>([]);
   const { email, password } = formData;
 
-  const onSubmitHandler = (event: any) => {
+  const onSubmitHandler = async (event: any) => {
     event.preventDefault();
-    login();
-  };
-
-  const login = async () => {
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const body = JSON.stringify(formData);
-      let res = await axios.post("http://localhost:5000/login", body, config);
+      let res = await Api.login(JSON.stringify(formData));
       localStorage.setItem("userData", JSON.stringify(res.data));
       history.push("/");
     } catch (err) {

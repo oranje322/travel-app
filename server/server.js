@@ -84,7 +84,7 @@ app.post('/join',[
       name, email, password, photo
     });
     await user.save();
-    res.send('Ok');
+    res.send({email: user.email, photo: user.photo, name: user.name});
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
