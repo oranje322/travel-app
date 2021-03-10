@@ -25,6 +25,19 @@ body{
 	background-image: url('./assets/img/back-full.jpg');
 }
 
+.auth-bg {
+	background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('./assets/img/backround.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	@include fonts(Montserrat, 200, 1rem);
+}
+
 .app {
 	background: url('./assets/img/pic.png') no-repeat;
 	background-size: 1920px 770px;

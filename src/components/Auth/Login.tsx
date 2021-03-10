@@ -1,0 +1,63 @@
+import React, { useState } from "react";
+import classes from "./Auth.module.scss";
+import { Link, useHistory } from "react-router-dom";
+import { Button, Input } from "@material-ui/core";
+import axios from "axios";
+
+const Login = () => {
+  const history = useHistory();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState<any>([]);
+  const { email, password } = formData;
+
+  const onSubmitHandler = (event: any) => {
+    event.preventDefault();
+    login();
+  };
+
+  const login = async () => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const body = JSON.stringify(formData);
+      let res = await axios.post("http://localhost:5000/login", body, config);
+      localStorage.setItem("userData", JSON.stringify(res.data));
+      history.push("/");
+    } catch (err) {
+      setErrors(err.response.data.errors.map((err: any) => err.msg));
+    }
+  };
+
+  const onChangeHandler = (event: any) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+    setErrors([]);
+  };
+
+  return (
+    <div className={["auth-bg", classes.wrapper].join(" ")}>
+      <div className={classes.formContainer}>
+        <Button className={classes.backBtn} onClick={() => history.push("/")}>
+          На главную
+        </Button>
+        <h2>Войти</h2>
+        <form className={classes.form} onSubmit={onSubmitHandler}>
+          <Input type="email" name="email" placeholder="Почта" value={email} onChange={onChangeHandler} required />
+          <Input type="password" name="password" placeholder="Пароль" value={password} onChange={onChangeHandler} required />
+          {errors.length > 0 && <p className={classes.helperText}>{errors.join("\r\n")}</p>}
+          <Button type="submit">Подтвердить</Button>
+        </form>
+        <p className={classes.text}>
+          Нет аккаунта? <Link to="/join">Зарегистрироваться</Link>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
