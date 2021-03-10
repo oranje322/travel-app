@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Star } from "../components/Star";
 
 interface Rating {
   totalStars: number;
@@ -16,4 +15,4 @@ export const StarRating = ({ totalStars }: Rating) => {
       ))}
     </div>
   );
-};
+}; 
