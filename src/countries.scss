@@ -231,12 +231,9 @@ body{
 
 
 	//map
-	.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
-    -ms-touch-action: none;
-    touch-action: none;
+	.leaflet-container{
     height: 500px;
     width: 600px;
-    position: relative;
 	}
 }
 
