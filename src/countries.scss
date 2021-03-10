@@ -110,7 +110,7 @@ body{
 
 	//gallery
 	.slider{
-		width: 100%;
+		width: 91%;
 	}
 	.gallery-block {
 		margin-top: 8.125rem;
@@ -174,11 +174,17 @@ body{
 	}
 	
 	
-	.map {
+	.map-block {
 		margin-top: 4.5rem;
 		display: flex;
 		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+
 	}
+
+
+
 
 	.subtitle {
 		@include fonts(Manrope, 300, 5.27rem);
@@ -233,7 +239,7 @@ body{
 	//map
 	.leaflet-container{
     height: 500px;
-    width: 600px;
+    width: 50%;
 	}
 }
 
