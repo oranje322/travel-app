@@ -5,9 +5,10 @@ import {Api} from "../../api/api";
 import {setCountries, setFilteredCountries, setSearchValue} from "../actions/actions";
 
 export const setCountriesThunk = (): ThunkAction<void, IState, unknown, ActionsTypes> => {
-	return async (dispatch) => {
+	return async (dispatch, getState) => {
 		let response = await Api.getCountries();
 		dispatch(setCountries(response.data));
+		sessionStorage.setItem('travel-app-state', JSON.stringify(getState()))
 	};
 };
 

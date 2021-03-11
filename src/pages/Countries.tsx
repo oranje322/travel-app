@@ -17,10 +17,6 @@ interface paramTypes {
 	ISOCode: string
 }
 
-
-//todo пофиксить баг, если первый рендер был на этой странице - country undefined
-
-
 const Countries = () => {
 	const {ISOCode} = useParams<paramTypes>();
 
