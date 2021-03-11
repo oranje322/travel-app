@@ -11,6 +11,7 @@ import { Api } from "../api/api";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { Map } from "../components/Map";
 import Footer from "../components/Footer";
+import About from "../components/About/About";
 
 interface paramTypes {
 	ISOCode: string
@@ -72,50 +73,47 @@ const Countries = () => {
 
 	return (
 		<div className={"countries"}>
-			<ScrollToTop />
-			<Header inputVisible={false} />
-			<div className="widgets-block">
-				{/* блок с виджетами */}
-				<div className="widgets-block_info">
-					<p className="weather"><img src={`http://openweathermap.org/img/wn/${temperatureIcon}.png`}
-						alt="" /> {temperature} °С</p>
-					<p className="currency">1$ = {`${currency}${getSymbolFromCurrency(country.currency)}`}</p>
-				</div>
-				<div className="widgets-block_time">
-					<p className="time"><Clock lang={"RU"} timeZone={country.timezone} /></p>
-					<h2 className="name">{`${country.country}, ${country.capital}`}</h2>
-				</div>
-			</div>
-
-			<div className={"img-block"}>
-				<img className={"country-img"} src={country.imageURL} alt="country-img" />
-			</div>
-			<div className="video-block">
-				<iframe title={country.country} width="1000" height="420"
-					src={`https://www.youtube.com/embed/${country.videoURL}`} frameBorder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-					allowFullScreen></iframe>
-			</div>
-			<div className="desc-block">
-				<p className="desc-text">
-					{country.desc}
-				</p>
-			</div>
-			<div className="gallery-block">
-				<h2 className={"subtitle"}>Что посмотреть?</h2>
-				<div className="slider">
-					<ImageGallery items={images} />
-				</div>
-			</div>
-			<div className="map">
-				<div>
-					<h2 className="subtitle">Где это?</h2>
-					<div>
-						<Map coordinates={country.coordinates} />
+			<div className={"content-wrapper"}>
+				<div className={"content"}>
+					<ScrollToTop />
+					<Header inputVisible={false} />
+					<div className="widgets-block">
+						{/* блок с виджетами */}
+						<div className="widgets-block_info">
+							<p className="weather"><img src={`http://openweathermap.org/img/wn/${temperatureIcon}.png`}
+								alt="" /> {temperature} °С</p>
+							<p className="currency">1$ = {`${currency}${getSymbolFromCurrency(country.currency)}`}</p>
+						</div>
+						<div className="widgets-block_time">
+							<p className="time"><Clock lang={"RU"} timeZone={country.timezone} /></p>
+						</div>
 					</div>
+
+					<About imageURL={country.imageURL} country={country.country} capital={country.capital} desc={country.desc} />
+
+					<div className="gallery-block">
+						<h2 className={"subtitle"}>Что посмотреть?</h2>
+						<div className="slider">
+							<ImageGallery items={images} />
+						</div>
+					</div>
+
+					<div className="video-block">
+						<iframe title={country.country} width="1000" height="562"
+							src={`https://www.youtube.com/embed/${country.videoURL}`} frameBorder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowFullScreen></iframe>
+					</div>
+
+					<div className="map">
+						<div>
+							<h2 className="subtitle">Где это?</h2>
+							<Map coordinates={country.coordinates} />
+						</div>
+					</div>
+					<Footer />
 				</div>
 			</div>
-			<Footer />
 		</div>
 	);
 };

@@ -34,7 +34,6 @@ body{
 .container {
 	max-width: 172rem;
 	&.main{
-	margin: 0 7rem;
 	max-width: 1720px;
 	}
 	&.body{
@@ -43,7 +42,6 @@ body{
 	margin: 3.5rem 9rem;
 	}
 	&.header{
-		margin: 0 6.25rem;
 		display: block;
 	}
 }
