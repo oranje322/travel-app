@@ -1,6 +1,6 @@
 import {applyMiddleware, compose, createStore, Store} from "redux";
 import thunk from "redux-thunk";
-import reducer from "./reducers/reducer";
+import reducer, {initialState} from "./reducers/reducer";
 import {ActionsTypes} from "./actions/actionsTypes";
 import {IState} from "./reducers/reducerTypes";
 
@@ -8,7 +8,7 @@ import {IState} from "./reducers/reducerTypes";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const temp = window.sessionStorage.getItem('travel-app-state');
-const previousState = temp ? JSON.parse(temp) : {};
+const previousState = temp ? JSON.parse(temp) : initialState;
 
 const configureStore = () => (
 	createStore(
