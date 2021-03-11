@@ -17,6 +17,7 @@ interface paramTypes {
 	ISOCode: string
 }
 
+
 //todo пофиксить баг, если первый рендер был на этой странице - country undefined
 
 
@@ -29,7 +30,10 @@ const Countries = () => {
 
 	const [temperature, setTemperature] = useState<number | string>("");
 	const [temperatureIcon, setTemperatureIcon] = useState<string>("");
-	const [currency, setCurrency] = useState<number>(0);
+	const [currency, setCurrency] = useState<{[index: string]: any}>({USD: 0, EUR: 0, RUB: 0})
+	// const [currencyUSD, setCurrencyUSD] = useState<number>(0);
+	// const [currencyEUR, setCurrencyEUR] = useState<number>(0);
+	// const [currencyRUB, setCurrencyRUB] = useState<number>(0);
 
 	useEffect(() => {
 		Api.getTemperature(country.coordinates, lang).then(r => {
@@ -38,9 +42,21 @@ const Countries = () => {
 		});
 	}, [country.coordinates, lang]);
 
-	useEffect(() => {
-		Api.getСurrency(country.currency).then(r => setCurrency(r.data.rates[country.currency].toFixed(2)));
+	useEffect ( () => {
+		 	 Api.getСurrency(country.currency).then((r) => {
+				 let [usd, eur, rub] = r.map(obj => {
+				 	if(obj.status === "fulfilled") {
+						return obj.value.data.rates[country.currency].toFixed(2)
+					} else return 0
+				 })
+				 setCurrency({
+					 USD: +usd,
+					 EUR: +eur,
+					 RUB: +rub
+				 })
+		});
 	}, [country.currency]);
+
 
 	const myRenderItem = (props: any) => {
 		return <div className="image-gallery-container">
@@ -66,6 +82,7 @@ const Countries = () => {
 	];
 
 
+
 	return (
 		<div className={"countries"}>
 			<Header inputVisible={false} />
@@ -75,7 +92,17 @@ const Countries = () => {
 				<div className="widgets-block_info">
 					<p className="weather"><img src={`http://openweathermap.org/img/wn/${temperatureIcon}.png`}
 						alt="" /> {temperature} ℃</p>
-					<p className="currency">1$ = {`${currency}${getSymbolFromCurrency(country.currency)}`}</p>
+					<p className="currency">
+						{
+							Object.keys(currency).map((key, index) => {
+								if(key !== country.currency) {
+									return <span key={index}>1 {getSymbolFromCurrency(key)} = {currency[key]} {getSymbolFromCurrency(country.currency)} </span>
+
+								}
+							})
+						}
+					</p>
+
 				</div>
 				<div className="widgets-block_time">
 					<p className="time"><Clock lang={"RU"} timeZone={country.timezone} /></p>

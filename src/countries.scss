@@ -61,6 +61,12 @@ body{
 				@include widget();
 				@include fonts(Manrope, 200, 2.5rem);
 			}
+
+			.currency {
+				flex-direction: column;
+				padding: 1rem 2rem;
+			}
+
 		}
 		&_time{
 			width: 41rem;
