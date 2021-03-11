@@ -32,15 +32,6 @@ $dark-grey: #c0baba;
 body{
 	background-image: url('./assets/img/back-full.jpg');
 }
-.content-wrapper {
-	display: flex;
-	justify-content: center;
-}
-.content {
-	margin: 0 auto;
-	width: 90vw;
-	max-width: 1366px;
-}
 .countries {
 	display: flex;
 	flex-direction: column;
@@ -162,9 +153,12 @@ body{
 		justify-content: center;
 		flex-direction: column;
 		align-items: center;
-
 	}
-
+	.leaflet-container{
+		margin: 0 auto;
+		height: 500px;
+		width: 100%;
+	}
 
 
 
@@ -215,14 +209,6 @@ body{
 	.star:hover ~ .star,
 	.star.selected {
 		background-color: #f9cf02;
-	}
-
-
-	//map
-	.leaflet-container{
-		margin: 0 auto;
-    height: 500px;
-    width: 50%;
 	}
 }
 

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&family=Playfair+Display:wght@400;500&family=Roboto:wght@300&display=swap');
 
 $dark-grey: #2E2B2B;
+$max-width: 1366px;
 
 :root{
 	font-size: 16px;
@@ -29,6 +30,16 @@ body{
 	background: url('./assets/img/pic.png') no-repeat;
 	background-size: 1920px 770px;
 	overflow: hidden;
+}
+
+.content-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.content {
+	margin: 0 auto;
+	width: 90vw;
+	max-width: $max-width;
 }
 
 .container {
@@ -149,14 +160,19 @@ body{
 }
 
 .footer {
-	margin-top: 7rem;
 	background: #F5E9E0;
+	margin-top: 7rem;
+}
+.footer-content {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90vw;
+	max-width: $max-width;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 
 	.git-block {
-		margin-left: 4.3;
 		padding: 1.9rem 0;
 		a{
 			@include fonts(Roboto, 400,1.25rem);
@@ -168,7 +184,7 @@ body{
 	}
 	.course-block {
 		display: flex;
-		margin-right: 6.25rem;
+		margin-right: 1.25rem;
 		//align-items: center;
 		font-size: 1.25rem;
 	}
