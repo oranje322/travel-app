@@ -1,4 +1,4 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 
 
 const instance = axios.create({
@@ -51,7 +51,7 @@ export const Api = {
 };
 
 interface ICurrencyResp {
-		rates: {
-			[key:string]: number
-		}
+	rates: {
+		[key: string]: number
+	}
 }
