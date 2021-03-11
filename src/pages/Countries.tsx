@@ -78,7 +78,7 @@ const Countries = () => {
 				{/* блок с виджетами */}
 				<div className="widgets-block_info">
 					<p className="weather"><img src={`http://openweathermap.org/img/wn/${temperatureIcon}.png`}
-						alt="" /> {temperature} ℃</p>
+						alt="" /> {temperature} °С</p>
 					<p className="currency">1$ = {`${currency}${getSymbolFromCurrency(country.currency)}`}</p>
 				</div>
 				<div className="widgets-block_time">
