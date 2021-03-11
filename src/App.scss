@@ -64,6 +64,8 @@ body{
 	align-items: center;
 	.logo {
 		max-width: 24rem;
+		position: relative;
+		top: 0.5em;
 	}
 	.side-block {
 		display: flex;
