@@ -1,5 +1,5 @@
-import {SET_COUNTRIES, SET_FILTERED_COUNTRIES, SET_LANG, SET_SEARCH_VALUE} from "../reducers/reducer";
-import {ICountry} from "../reducers/reducerTypes";
+import {SET_COUNTRIES, SET_FILTERED_COUNTRIES, SET_LANG, SET_SEARCH_VALUE, SET_USER_DATA} from "../reducers/reducer";
+import {ICountry, IUser} from "../reducers/reducerTypes";
 
 export interface ISetCountries {
 	type: typeof SET_COUNTRIES,
@@ -21,5 +21,11 @@ export interface ISetFilteredCountries {
 	payload: ICountry[]
 }
 
+export interface ISetUserData {
+	type: typeof SET_USER_DATA,
+	payload: IUser
+}
 
-export type ActionsTypes = ISetCountries | ISetLang | ISetSearchValue | ISetFilteredCountries
+
+export type ActionsTypes = ISetCountries | ISetLang | ISetSearchValue |
+	ISetFilteredCountries | ISetUserData
