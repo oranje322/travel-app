@@ -3,7 +3,6 @@ import "../countries.scss";
 import Header from "../components/Header";
 import Clock from "../components/Clock";
 import { StarRating } from "../components/StarRating";
-import ImageGallery from "react-image-gallery";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IState } from "../redux/reducers/reducerTypes";
@@ -25,10 +24,9 @@ const Countries = () => {
   const country = useSelector((state: IState) => state.countries).filter(
     (countryObj) => countryObj.ISOCode === ISOCode
   )[0];
-
   const [temperature, setTemperature] = useState<number | string>("");
   const [temperatureIcon, setTemperatureIcon] = useState<string>("");
-  const [currency, setCurrency] = useState<number>(0);
+  const [currency, setCurrency] = useState<{ [index: string]: any }>({ USD: 0, EUR: 0, RUB: 0 });
 
   useEffect(() => {
     Api.getTemperature(country.coordinates, lang).then((r) => {
@@ -38,7 +36,18 @@ const Countries = () => {
   }, [country.coordinates, lang]);
 
   useEffect(() => {
-    Api.getСurrency(country.currency).then((r) => setCurrency(r.data.rates[country.currency].toFixed(2)));
+    Api.getСurrency(country.currency).then((r) => {
+      let [usd, eur, rub] = r.map((obj) => {
+        if (obj.status === "fulfilled") {
+          return obj.value.data.rates[country.currency].toFixed(2);
+        } else return 0;
+      });
+      setCurrency({
+        USD: +usd,
+        EUR: +eur,
+        RUB: +rub,
+      });
+    });
   }, [country.currency]);
 
   function ScrollToTop() {
@@ -48,6 +57,7 @@ const Countries = () => {
 
     return null;
   }
+
   const myRenderItem = (props: any) => {
     return (
       <div className="image-gallery-container">
@@ -58,18 +68,17 @@ const Countries = () => {
       </div>
     );
   };
-  const images = [
-    ...country.attractions.map((attr) => {
-      return {
-        original: attr.imageURL,
-        thumbnail: attr.imageURL,
-        description: attr.desc,
-        originalTitle: attr.name,
-        starRating: StarRating,
-        renderItem: myRenderItem,
-      };
-    }),
-  ];
+
+  const images = country.attractions.map((attr) => {
+    return {
+      original: attr.imageURL,
+      thumbnail: attr.imageURL,
+      description: attr.desc,
+      originalTitle: attr.name,
+      starRating: StarRating,
+      renderItem: myRenderItem,
+    };
+  });
 
   return (
     <div className={"countries"}>
@@ -78,13 +87,24 @@ const Countries = () => {
           <ScrollToTop />
           <Header inputVisible={false} />
           <div className="widgets-block">
-            {/* блок с виджетами */}
             <div className="widgets-block_info">
               <p className="weather">
                 <img src={`http://openweathermap.org/img/wn/${temperatureIcon}.png`} alt="" /> {temperature} °С
               </p>
-              <p className="currency">1$ = {`${currency}${getSymbolFromCurrency(country.currency)}`}</p>
+
+              <p className="currency">
+                {Object.keys(currency).map((key, index) => {
+                  if (key !== country.currency) {
+                    return (
+                      <span key={index}>
+                        1 {getSymbolFromCurrency(key)} = {currency[key]} {getSymbolFromCurrency(country.currency)}{" "}
+                      </span>
+                    );
+                  }
+                })}
+              </p>
             </div>
+
             <div className="widgets-block_time">
               <p className="time">
                 <Clock lang={"RU"} timeZone={country.timezone} />
@@ -93,13 +113,6 @@ const Countries = () => {
           </div>
 
           <About imageURL={country.imageURL} country={country.country} capital={country.capital} desc={country.desc} />
-
-          <div className="gallery-block">
-            <h2 className={"subtitle"}>Что посмотреть?</h2>
-            <div className="slider">
-              <ImageGallery items={images} />
-            </div>
-          </div>
 
           <div className="video-block">
             <iframe

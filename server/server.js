@@ -40,6 +40,12 @@ app.get('/countries/:ISOCode', async (req, res) => {
   }
 });
 
+// Get ratings
+app.post('/rating', async (req, res) => {
+  const ratings = await Ratings.find({attraction: req.body.id})
+  res.send(ratings)
+});
+
 // Put attraction rating
 app.put('/rating', async (req, res) => {
   try {
@@ -79,16 +85,16 @@ app.post('/join',[
     if (user) {
       return res.status(400).json({ errors: [{ msg: 'User already exists' }]});
     }
+
+    user = new User({
+      name, email, password, photo
+    });
+    await user.save();
+    res.send({email: user.email, photo: user.photo, name: user.name});
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
   }
-
-  user = new User({
-    name, email, password, photo
-  })
-
-  await user.save();
 });
 
 // User login
@@ -110,13 +116,11 @@ app.post('/login', [
     }
 
     const isMatch = password === user.password;
-
     if (!isMatch) {
       return res.status(400).json({ errors: [{ msg: 'Invalid Crederntials' }]});
     }
 
-    res.send(user.id);
-
+    res.send({email: user.email, photo: user.photo, name: user.name});
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

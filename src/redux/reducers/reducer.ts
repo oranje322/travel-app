@@ -6,7 +6,7 @@ export const SET_LANG = 'SET_LANG'
 export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE'
 export const SET_FILTERED_COUNTRIES = 'SET_FILTERED_COUNTRIES'
 
-const initialState: IState = {
+export const initialState: IState = {
 	countries: [],
 	lang: 'ru',
 	searchValue: '',
