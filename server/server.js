@@ -48,9 +48,10 @@ app.post('/rating', async (req, res) => {
 
 // Put attraction rating
 app.put('/rating', async (req, res) => {
+  console.log(req.body)
   try {
     const rating = await Ratings.findOneAndUpdate(
-      { $and: [{attraction: req.body.attrId}, {email: req.body.email}] },
+      { $and: [{attraction: req.body.attrId}, {userName: req.body.userName}] },
       {
         $set: {      
           rating: req.body.rating,
@@ -59,7 +60,9 @@ app.put('/rating', async (req, res) => {
       { upsert: true }
     )
     await rating.save();
-    res.json(rating);
+    // res.json(rating);
+    const newRating = await Ratings.find({attraction: req.body.attrId})
+    res.send(newRating)
   } catch(err) {
     console.error(err.message);
     res.status(500).send('Server error');
