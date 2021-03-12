@@ -40,6 +40,12 @@ app.get('/countries/:ISOCode', async (req, res) => {
   }
 });
 
+// Get ratings
+app.post('/rating', async (req, res) => {
+  const ratings = await Ratings.find({attraction: req.body.id})
+  res.send(ratings)
+});
+
 // Put attraction rating
 app.put('/rating', async (req, res) => {
   try {
