@@ -21,7 +21,7 @@ export const StarRating = ({id}: Rating) => {
 	}, [])
 
 	const onClickChangeRate = (rating:number) => {
-		Api.setRating(id, userName, rating).then(r => console.log(r))
+		Api.setRating(id, userName, rating).then(r => setStarsValue(calculateRating(r.data)))
 	}
 
 	return (
