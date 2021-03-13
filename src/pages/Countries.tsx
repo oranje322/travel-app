@@ -2,16 +2,16 @@ import React, {useEffect, useState} from "react";
 import "../countries.scss";
 import Header from "../components/Header";
 import Clock from "../components/Clock";
-import {StarRating} from "../components/StarRating";
-import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {IState} from "../redux/reducers/reducerTypes";
-import {Api} from "../api/api";
+import ImageGallery from "react-image-gallery";
+import { StarRating } from "../components/StarRating";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { IState } from "../redux/reducers/reducerTypes";
+import { Api } from "../api/api";
 import getSymbolFromCurrency from "currency-symbol-map";
 import {Map} from "../components/Map";
 import Footer from "../components/Footer";
 import About from "../components/About/About";
-import ImageGallery from "react-image-gallery";
 
 
 interface paramTypes {
@@ -101,49 +101,51 @@ const Countries = () => {
 											<span key={index}>
                         1 {getSymbolFromCurrency(key)} = {currency[key]} {getSymbolFromCurrency(country.currency)}{" "}
                       </span>
-										);
-									} else return ''
-								})}
-							</p>
-						</div>
+                    );
+                  }
+                })}
+              </p>
+            </div>
 
-						<div className="widgets-block_time">
-							<p className="time">
-								{/*<Clock lang={"RU"} timeZone={country.timezone}/>*/}
-							</p>
-						</div>
-					</div>
+            <div className="widgets-block_time">
+              <p className="time">
+                {/* <Clock lang={"RU"} timeZone={country.timezone} /> */}
+              </p>
+            </div>
+          </div>
 
-					<About imageURL={country.imageURL} country={country.country} capital={country.capital} desc={country.desc}/>
-					<div className="gallery-block">
-						<h2 className={"subtitle"}>Что посмотреть?</h2>
-						<div className="slider">
-							<ImageGallery items={images}/>
-						</div>
-					</div>
-					<div className="video-block">
-						<iframe
-							title={country.country}
-							width="1366"
-							height="768"
-							src={`https://www.youtube.com/embed/${country.videoURL}`}
-							frameBorder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							allowFullScreen
-						></iframe>
-					</div>
+          <About imageURL={country.imageURL} country={country.country} capital={country.capital} desc={country.desc} />
 
-					<div className="map">
-						<div>
-							<h2 className="subtitle">Где это?</h2>
-							<Map coordinates={country.coordinates}/>
-						</div>
-					</div>
-				</div>
-			</div>
-			<Footer/>
-		</div>
-	);
+          <div className="gallery-block">
+            <h2 className={"subtitle"}>Что посмотреть?</h2>
+            <div className="slider">
+              <ImageGallery items={images} />
+            </div>
+          </div>
+
+          <div className="video-block">
+            <iframe
+              title={country.country}
+              width="1366"
+              height="768"
+              src={`https://www.youtube.com/embed/${country.videoURL}`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+
+          <div className="map">
+            <div>
+              <h2 className="subtitle">Где это?</h2>
+              <Map coordinates={country.coordinates} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
 };
 
 export default Countries;

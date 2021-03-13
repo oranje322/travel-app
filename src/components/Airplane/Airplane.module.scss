@@ -1,0 +1,14 @@
+.airplaneLeft,
+.airplaneRight {
+  position: fixed;
+  top: 50%;
+  left: 0%;
+  width: 15vw;
+  height: auto;
+}
+
+.airplaneRight {
+  left: auto;
+  right: 0%;
+	transform: scaleX(-1);
+}
