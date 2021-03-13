@@ -59,13 +59,13 @@ body{
 }
 
 .header {
+	margin: 4rem auto;
+	max-width: $max-width;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	.logo {
 		max-width: 24rem;
-		position: relative;
-		top: 0.5em;
 	}
 	.side-block {
 		display: flex;
