@@ -7,7 +7,7 @@ $green: hsl(65, 30%, 40%);
   background: linear-gradient(148deg, $light-green 0%, $green 30%, $green 70%, $light-green 100%);
   color: white;
   padding: 1.25rem 2.5rem;
-  filter: drop-shadow(10px 10px 10px #666b7b);
+  filter: drop-shadow(0.5rem 0.5rem 0.5rem #666b7b);
 }
 
 @mixin fonts($family, $weight, $size) {

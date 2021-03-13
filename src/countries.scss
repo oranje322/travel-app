@@ -49,8 +49,9 @@ body {
 
 	.video-block {
 		display: flex;
-		margin-top: 130px;
+		margin-top: 4rem;
 		align-self: center;
+		filter: drop-shadow(0.5rem 0.5rem 0.5rem #666b7b);
 	}
 
 	//gallery
@@ -61,6 +62,10 @@ body {
 			margin-bottom: 4rem;
 			@include fonts(Manrope, 300, 4.375rem)
 		}
+	}
+
+	.image-gallery-slide-wrapper.bottom {
+		filter: drop-shadow(0.5rem 0.5rem 0.5rem #666b7b);
 	}
 
 	.image-gallery {
@@ -122,13 +127,14 @@ body {
 	
 	
 	.map-block {
-		margin-top: 4.5rem;
+		margin-top: 4rem;
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
 		align-items: center;
 	}
 	.leaflet-container{
+		filter: drop-shadow(0.5rem 0.5rem 0.5rem #666b7b);
 		margin: 0 auto;
 		height: 700px;
 		width: 100%;
