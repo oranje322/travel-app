@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../countries.scss";
 import Header from "../components/Header";
 import Clock from "../components/Clock";
+import ImageGallery from "react-image-gallery";
 import { StarRating } from "../components/StarRating";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -113,6 +114,13 @@ const Countries = () => {
           </div>
 
           <About imageURL={country.imageURL} country={country.country} capital={country.capital} desc={country.desc} />
+
+          <div className="gallery-block">
+            <h2 className={"subtitle"}>Что посмотреть?</h2>
+            <div className="slider">
+              <ImageGallery items={images} />
+            </div>
+          </div>
 
           <div className="video-block">
             <iframe

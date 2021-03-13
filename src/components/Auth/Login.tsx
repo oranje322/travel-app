@@ -3,6 +3,7 @@ import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Input } from "@material-ui/core";
 import { Api } from '../../api/api';
+import Airplane from '../Airplane/Airplane';
 
 const Login = () => {
   const history = useHistory();
@@ -30,7 +31,8 @@ const Login = () => {
   };
 
   return (
-    <div className={["auth-bg", classes.wrapper].join(" ")}>
+    <div className={classes.wrapper}>
+      <Airplane />
       <div className={classes.formContainer}>
         <Button className={classes.backBtn} onClick={() => history.push("/")}>
           На главную

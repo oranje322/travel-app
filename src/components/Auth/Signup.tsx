@@ -48,7 +48,7 @@ function Signup() {
   };
 
   return (
-    <div className={["auth-bg", classes.wrapper].join(" ")}>
+    <div className={classes.wrapper}>
       <div className={classes.formContainer}>
         <Button className={classes.backBtn} onClick={() => history.push("/")}>
           На главную
