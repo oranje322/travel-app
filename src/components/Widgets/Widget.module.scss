@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;&family=Manrope:wght@200;300&display=swap");
+
+$light-green: hsl(64, 30%, 60%);
+$green: hsl(65, 30%, 40%);
+
+@mixin widget() {
+  background: linear-gradient(148deg, $light-green 0%, $green 30%, $green 70%, $light-green 100%);
+  color: white;
+  padding: 1.25rem 2.5rem;
+  filter: drop-shadow(10px 10px 10px #666b7b);
+}
+
+@mixin fonts($family, $weight, $size) {
+  font-family: $family;
+  font-weight: $weight;
+  font-size: $size;
+}
+
+.widgets {
+  margin-bottom: 4rem;
+  height: auto;
+  display: grid;
+  grid-gap: 2rem;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.widget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  text-align: left;
+  @include widget();
+  @include fonts(Manrope, 200, 2rem);
+}
+
+.currency {
+	font-size: 1.5em;
+}

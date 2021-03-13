@@ -1,17 +1,15 @@
 import React, {useEffect, useState} from "react";
 import "../countries.scss";
 import Header from "../components/Header";
-import Clock from "../components/Clock";
 import ImageGallery from "react-image-gallery";
 import { StarRating } from "../components/StarRating";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IState } from "../redux/reducers/reducerTypes";
-import { Api } from "../api/api";
-import getSymbolFromCurrency from "currency-symbol-map";
 import {Map} from "../components/Map";
 import Footer from "../components/Footer";
 import About from "../components/About/About";
+import Widget from "../components/Widgets/Widgets";
 
 
 interface paramTypes {
@@ -25,31 +23,6 @@ const Countries = () => {
 	const country = useSelector((state: IState) => state.countries).filter(
 		(countryObj) => countryObj.ISOCode === ISOCode
 	)[0];
-	const [temperature, setTemperature] = useState<number | string>("");
-	const [temperatureIcon, setTemperatureIcon] = useState<string>("");
-	const [currency, setCurrency] = useState<{ [index: string]: any }>({USD: 0, EUR: 0, RUB: 0});
-
-	useEffect(() => {
-		Api.getTemperature(country.coordinates, lang).then((r) => {
-			setTemperature(Math.round(r.data.main.temp));
-			setTemperatureIcon(r.data.weather[0].icon);
-		});
-	}, [country.coordinates, lang]);
-
-	useEffect(() => {
-		Api.getСurrency(country.currency).then((r) => {
-			let [usd, eur, rub] = r.map((obj) => {
-				if (obj.status === "fulfilled") {
-					return obj.value.data.rates[country.currency].toFixed(2);
-				} else return 0;
-			});
-			setCurrency({
-				USD: +usd,
-				EUR: +eur,
-				RUB: +rub,
-			});
-		});
-	}, [country.currency]);
 
 	function ScrollToTop() {
 		useEffect(() => {
@@ -88,32 +61,7 @@ const Countries = () => {
 				<div className={"content"}>
 					<ScrollToTop/>
 					<Header inputVisible={false}/>
-					<div className="widgets-block">
-						<div className="widgets-block_info">
-							<p className="weather">
-								<img src={`http://openweathermap.org/img/wn/${temperatureIcon}.png`} alt="weather"/> {temperature} °С
-							</p>
-
-							<p className="currency">
-								{Object.keys(currency).map((key, index) => {
-									if (key !== country.currency) {
-										return (
-											<span key={index}>
-                        1 {getSymbolFromCurrency(key)} = {currency[key]} {getSymbolFromCurrency(country.currency)}{" "}
-                      </span>
-                    );
-                  }
-                })}
-              </p>
-            </div>
-
-            <div className="widgets-block_time">
-              <p className="time">
-                <Clock lang={"RU"} timeZone={country.timezone} />
-              </p>
-            </div>
-          </div>
-
+					<Widget lang={lang} country={country} />
           <About imageURL={country.imageURL} country={country.country} capital={country.capital} desc={country.desc} />
 
           <div className="gallery-block">
