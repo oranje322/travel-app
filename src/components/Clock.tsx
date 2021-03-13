@@ -38,7 +38,6 @@ class Clock extends Component<Props, State> {
       minute: "numeric",
       second: "numeric",
     });
-    console.log(today);
     return today;
   }
 

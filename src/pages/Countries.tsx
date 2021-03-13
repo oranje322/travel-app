@@ -73,8 +73,8 @@ const Countries = () => {
 
 	const images = country.attractions.map((attr) => {
 		return {
-			original: attr.imageURL,
-			thumbnail: attr.imageURL,
+			original: attr.imageURL + "?fit=crop&w=1000",
+			thumbnail: attr.imageURL + "?fit=crop&w=100",
 			description: attr.desc,
 			originalTitle: attr.name,
 			renderItem: myRenderItem,

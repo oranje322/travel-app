@@ -16,7 +16,7 @@ function About(props: Props) {
         <p className={classes.desc}>{props.desc}</p>
       </div>
       <div className={classes.imgContainer}>
-        <img className={classes.img} src={props.imageURL} alt={props.capital} />
+        <img className={classes.img} src={props.imageURL + "?fit=crop&h=500"} alt={props.capital} />
       </div>
     </div>
   );
