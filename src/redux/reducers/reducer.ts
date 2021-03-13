@@ -5,14 +5,19 @@ export const SET_COUNTRIES = 'SET_COUNTRIES'
 export const SET_LANG = 'SET_LANG'
 export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE'
 export const SET_FILTERED_COUNTRIES = 'SET_FILTERED_COUNTRIES'
+export const SET_USER_DATA = 'SET_USER_DATA'
 
 export const initialState: IState = {
 	countries: [],
 	lang: 'ru',
 	searchValue: '',
-	filteredCountries: []
+	filteredCountries: [],
+	userData: {
+		name: 'alesha',
+		email: '',
+		photo: ''
+	},
 }
-
 
 const reducer = (state = initialState, action: ActionsTypes): IState => {
 	switch (action.type) {
@@ -38,6 +43,12 @@ const reducer = (state = initialState, action: ActionsTypes): IState => {
 			return {
 				...state,
 				filteredCountries: action.payload
+			}
+		}
+		case SET_USER_DATA: {
+			return {
+				...state,
+				userData: action.payload
 			}
 		}
 		default:

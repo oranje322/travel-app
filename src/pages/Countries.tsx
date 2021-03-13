@@ -13,6 +13,7 @@ import Footer from "../components/Footer";
 import About from "../components/About/About";
 import ImageGallery from "react-image-gallery";
 
+
 interface paramTypes {
 	ISOCode: string;
 }
@@ -58,11 +59,12 @@ const Countries = () => {
 		return null;
 	}
 
+	// функция рендера картинок галереи
 	const myRenderItem = (props: any) => {
 		return (
 			<div className="image-gallery-container">
 				<img className="image-gallery-image" src={props.original} alt={'img'}/>
-				<StarRating totalStars={5}/>
+				<StarRating id={props.id}/>
 				<span className="image-gallery-description">{props.description}</span>
 				<p className="image-gallery-title">{props.originalTitle}</p>
 			</div>
@@ -75,8 +77,8 @@ const Countries = () => {
 			thumbnail: attr.imageURL,
 			description: attr.desc,
 			originalTitle: attr.name,
-			starRating: StarRating,
 			renderItem: myRenderItem,
+			id: attr._id
 		};
 	});
 
@@ -107,7 +109,7 @@ const Countries = () => {
 
 						<div className="widgets-block_time">
 							<p className="time">
-								<Clock lang={"RU"} timeZone={country.timezone}/>
+								{/*<Clock lang={"RU"} timeZone={country.timezone}/>*/}
 							</p>
 						</div>
 					</div>

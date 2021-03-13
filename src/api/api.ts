@@ -46,6 +46,14 @@ export const Api = {
 			axios.get<ICurrencyResp>(`${currencyApiUrl}?symbols=${currency}&base=EUR`),
 			axios.get<ICurrencyResp>(`${currencyApiUrl}?symbols=${currency}&base=RUB`),
 		])
+	},
+
+	getRating (id:string) {
+		return instance.post<IRatingResponse[]>('/rating', {id})
+	},
+
+	setRating (attrId:string, userName:string, rating:number): Promise<any> {
+		return instance.put('/rating', {attrId, userName, rating})
 	}
 };
 
@@ -53,4 +61,12 @@ interface ICurrencyResp {
 	rates: {
 		[key: string]: number
 	}
+}
+
+export interface IRatingResponse {
+	_id: string,
+	attraction: string,
+	email: string,
+	__v: number,
+	rating: number
 }

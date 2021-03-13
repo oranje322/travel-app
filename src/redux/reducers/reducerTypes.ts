@@ -2,8 +2,15 @@ export interface IState {
 	countries: ICountry[],
 	lang: string,
 	searchValue: string,
-	filteredCountries: ICountry[]
+	filteredCountries: ICountry[],
+	userData: IUser,
 
+}
+
+export interface IUser {
+	name: string,
+	email: string,
+	photo: string
 }
 
 export interface ICountry {
@@ -23,4 +30,5 @@ export interface IAttractions {
 	name: string,
 	imageURL: string,
 	desc: string,
+	_id: string
 }
