@@ -2,6 +2,7 @@ import React from "react";
 import CountryCard from "./CountryCard";
 import { useSelector } from "react-redux";
 import { IState } from "../redux/reducers/reducerTypes";
+import Clouds from "./Clouds/Clouds.js";
 
 const Body = () => {
 
@@ -11,6 +12,7 @@ const Body = () => {
 
 	return (
 		<div className="container body">
+			<Clouds />
 			<main className={"body"}>
 				<div className="body-title">
 					<h1 className="title">Как прекрасен этот мир, посмотри</h1>
