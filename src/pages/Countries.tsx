@@ -109,7 +109,7 @@ const Countries = () => {
 
             <div className="widgets-block_time">
               <p className="time">
-                {/* <Clock lang={"RU"} timeZone={country.timezone} /> */}
+                <Clock lang={"RU"} timeZone={country.timezone} />
               </p>
             </div>
           </div>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 interface Props {
   lang: string;
-	timeZone: string;
+  timeZone: string;
 }
 
 interface State {
@@ -15,7 +15,7 @@ class Clock extends Component<Props, State> {
   };
 
   intervalId: any;
-	componentDidMount() {
+  componentDidMount() {
     this.intervalId = setInterval(this.tick, 1000);
   }
   componentWillUnmount() {
@@ -26,21 +26,21 @@ class Clock extends Component<Props, State> {
     this.setState({
       datetime: this.getCountryDatetime(this.props.lang, this.props.timeZone),
     });
-  }
+  };
 
-	getCountryDatetime(lang: string, timeZone: string) {
-		const today = new Date().toLocaleString("RU", { timeZone });
-		const date = new Date(today);
-		const formatter = new Intl.DateTimeFormat(lang, {
-			day: "numeric",
-			month: "short",
-			weekday: "short",
-			hour: "numeric",
-			minute: "numeric",
-			second: "numeric",
-		});
-		return formatter.format(date);
-	};
+  getCountryDatetime(lang: string = "RU", timeZone: string) {
+    const today = new Date().toLocaleString(lang, {
+      timeZone,
+      day: "numeric",
+      month: "short",
+      weekday: "short",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    });
+    console.log(today);
+    return today;
+  }
 
   render() {
     return <span>{this.state.datetime}</span>;
