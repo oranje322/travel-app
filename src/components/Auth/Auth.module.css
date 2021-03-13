@@ -1,0 +1,67 @@
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.formContainer {
+  position: relative;
+  width: 300px;
+  padding: 2rem;
+  text-align: center;
+  background-color: white;
+  border-radius: 0.1em;
+  -webkit-box-shadow: 0px 18px 27px -1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 18px 27px -1px rgba(0, 0, 0, 0.2);
+}
+
+.formContainer h2 {
+  margin-top: 3rem;
+}
+
+.formContainer a {
+  text-decoration: none;
+}
+
+.formContainer a:hover {
+  text-decoration: underline;
+}
+
+.formContainer p {
+  font-size: 0.8em;
+}
+
+.backBtn {
+  position: absolute !important;
+  top: 2rem;
+  left: 2rem;
+}
+
+.form div {
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.form button {
+  margin-top: 2.5rem;
+}
+
+.helperText {
+  margin: 0;
+  position: absolute;
+  color: red;
+  text-align: left;
+  white-space: break-spaces;
+}
+/*# sourceMappingURL=Auth.module.css.map */

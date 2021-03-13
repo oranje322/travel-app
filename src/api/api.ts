@@ -48,12 +48,12 @@ export const Api = {
 		])
 	},
 
-	getRating (id:string) {
-		return instance.post<IRatingResponse[]>('/rating', {id})
+	getRating(id: string) {
+		return instance.post<IRatingResponse[]>('/rating', { id })
 	},
 
-	setRating (attrId:string, userName:string, rating:number): Promise<any> {
-		return instance.put('/rating', {attrId, userName, rating})
+	setRating(attrId: string, userName: string, rating: number): Promise<any> {
+		return instance.put('/rating', { attrId, userName, rating })
 	}
 };
 
@@ -67,6 +67,7 @@ export interface IRatingResponse {
 	_id: string,
 	attraction: string,
 	email: string,
+	userName: string,
 	__v: number,
 	rating: number
 }

@@ -15,7 +15,7 @@ $dark-grey: #c0baba;
 	background: linear-gradient(148deg, $light-green 0%, $green 30%, $green 70%, $light-green 100%);
 	color: white;
 	padding: 1rem 3rem;
-  filter: drop-shadow(10px 10px 10px #666b7b);
+	filter: drop-shadow(10px 10px 10px #666b7b);
 }
 
 @mixin flex($direction,$content, $align) {
@@ -240,7 +240,33 @@ body {
 		background-color: #f9cf02;
 	}
 }
-
+	.show-star{
+		position: absolute;
+		top: 3rem;
+		left: 3.5rem;
+		padding: 0 1rem;
+		border: 0;
+		@include fonts(Montserrat, 200, 1.5rem);
+		background-color: rgba(238, 238, 238, 0.52);
+		outline: none;
+		cursor: pointer;
+	&_other{
+		position: absolute;
+		top: 8rem;
+		left: 2rem;
+		font-size: 1rem;
+		color: white;
+		text-align: left;
+		display:flex;
+		flex-direction: column;
+		text-shadow: 0.1875rem 0.125rem 0.31rem rgb(34, 33, 33);
+		&_item{
+			display:flex;
+			justify-content: space-between;
+			align-items:center;
+		}
+	}
+}
 @media (max-width: 1360px) {
 	:root {
 		font-size: 12px;
