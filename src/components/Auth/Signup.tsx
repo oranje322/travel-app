@@ -3,6 +3,8 @@ import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Input } from "@material-ui/core";
 import { Api } from '../../api/api';
+import {setUserData} from "../../redux/actions/actions";
+import {useDispatch} from "react-redux";
 
 function Signup() {
   const history = useHistory();
@@ -15,6 +17,8 @@ function Signup() {
   const [isFromTouched, setIsFromTouched] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>([]);
 
+  const dispatch = useDispatch()
+
   const { email, password, name, photo } = formData;
 
   const onSubmitHandler = async (event: any) => {
@@ -24,6 +28,7 @@ function Signup() {
       try {
         let res = await Api.signup(JSON.stringify(formData));
         localStorage.setItem("userData", JSON.stringify(res.data));
+        dispatch(setUserData(res.data))
         history.push("/");
       } catch (err) {
         setErrors(err.response.data.errors.map((err: any) => err.msg));

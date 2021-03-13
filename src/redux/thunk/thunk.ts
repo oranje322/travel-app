@@ -2,7 +2,7 @@ import {ThunkAction} from "redux-thunk";
 import {IState} from "../reducers/reducerTypes";
 import {ActionsTypes} from "../actions/actionsTypes";
 import {Api} from "../../api/api";
-import {setCountries, setFilteredCountries, setSearchValue} from "../actions/actions";
+import {setCountries, setFilteredCountries, setSearchValue, setUserData} from "../actions/actions";
 
 export const setCountriesThunk = (): ThunkAction<void, IState, unknown, ActionsTypes> => {
 	return async (dispatch, getState) => {
@@ -23,5 +23,18 @@ export const changeSearchThunk = (value: string): ThunkAction<void, IState, unkn
 			)
 			dispatch(setFilteredCountries(filteredCountries))
 		}
+	}
+}
+
+export const logoutThunk = (): ThunkAction<void, IState, unknown, ActionsTypes> => {
+	return async (dispatch, getState) => {
+		dispatch(setUserData({
+			email: '',
+			name: '',
+			photo: '',
+		}));
+		localStorage.removeItem("userData");
+		sessionStorage.removeItem('travel-app-state')
+		sessionStorage.setItem('travel-app-state', JSON.stringify(getState()))
 	}
 }
