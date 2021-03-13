@@ -17,8 +17,6 @@ type MapProps = {
 
 
 export const Map: React.FC<MapProps> = ({coordinates}) => {
-  //const position: LatLngTuple = [
-  //50.073658, 14.41854]
   const position: any = coordinates
 
   return (
@@ -28,9 +26,6 @@ export const Map: React.FC<MapProps> = ({coordinates}) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker position={position} icon={myIcon}>
-        <Popup>
-          The Capital of <br/> Chezh Republic
-        </Popup>
       </Marker>
     </MapContainer>
   )

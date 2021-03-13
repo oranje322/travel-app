@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Input } from "@material-ui/core";
-import { Api } from '../../api/api';
-import Airplane from '../Airplane/Airplane.js';
+import { Api } from "../../api/api";
+import Airplane from "../Airplane/Airplane.js";
+import { setUserData } from "../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 function Signup() {
   const history = useHistory();
@@ -16,6 +18,8 @@ function Signup() {
   const [isFromTouched, setIsFromTouched] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>([]);
 
+  const dispatch = useDispatch();
+
   const { email, password, name, photo } = formData;
 
   const onSubmitHandler = async (event: any) => {
@@ -25,6 +29,7 @@ function Signup() {
       try {
         let res = await Api.signup(JSON.stringify(formData));
         localStorage.setItem("userData", JSON.stringify(res.data));
+        dispatch(setUserData(res.data));
         history.push("/");
       } catch (err) {
         setErrors(err.response.data.errors.map((err: any) => err.msg));
@@ -36,8 +41,12 @@ function Signup() {
     const name = event.target.name;
     const value = event.target.value;
     setFormData({ ...formData, [name]: value });
-    
-    if (name === "photo" && (!value.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/) && value.length > 0)) {
+
+    if (
+      name === "photo" &&
+      !value.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/) &&
+      value.length > 0
+    ) {
       setErrors(["Ссылка на аватар некорректна"]);
       return;
     } else if (name === "password" && value.length < 6) {
@@ -59,9 +68,22 @@ function Signup() {
         <form className={classes.form} onSubmit={onSubmitHandler}>
           <Input type="text" name="name" placeholder="Имя" value={name} onChange={onChangeHandler} required />
           <Input type="email" name="email" placeholder="Почта" value={email} onChange={onChangeHandler} required />
-          <Input type="password" name="password" placeholder="Пароль" value={password} onChange={onChangeHandler} required />
-          <Input type="text" name="photo" placeholder="Ссылка на аватар или ничего" value={photo} onChange={onChangeHandler} />
-          {(errors.length > 0 && isFromTouched) && <p className={classes.helperText}>{errors.join("\r\n")}</p>}
+          <Input
+            type="password"
+            name="password"
+            placeholder="Пароль"
+            value={password}
+            onChange={onChangeHandler}
+            required
+          />
+          <Input
+            type="text"
+            name="photo"
+            placeholder="Ссылка на аватар или ничего"
+            value={photo}
+            onChange={onChangeHandler}
+          />
+          {errors.length > 0 && isFromTouched && <p className={classes.helperText}>{errors.join("\r\n")}</p>}
           <Button type="submit" disabled={errors.length > 0 && isFromTouched}>
             Подтвердить
           </Button>
