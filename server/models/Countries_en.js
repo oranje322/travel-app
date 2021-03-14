@@ -70,4 +70,4 @@ const CountriesSchema = new mongoose.Schema({
 	attractions: [AttractionSchema],
 });
 
-module.exports = Countries_en = mongoose.model("countries_en", CountriesSchema);
+module.exports = CountriesEn = mongoose.model("countries_english", CountriesSchema);

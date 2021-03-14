@@ -2,10 +2,11 @@ const express = require('express');
 const connectDB = require('./db.js');
 const path = require('path');
 const Countries = require('./models/Countries.js');
-const Countries_en = require('./models/Countries_en.js');
+const CountriesEn = require('./models/Countries_en.js');
 const User = require('./models/User.js');
 const Ratings = require('./models/Ratings.js');
 const { check, validationResult } = require('express-validator');
+const data = require("./en.js");
 
 
 const app = express();
@@ -28,7 +29,7 @@ app.use((req, res, next) => {
 // Get ru/en lang countries
 app.get('/countries', async (req, res) => {
   if(req.query.lang === 'en') {
-    const countries_en = await Countries_en.find();
+    const countries_en = await CountriesEn.find();
     console.log(countries_en)
     res.send(countries_en);
   } else {
@@ -36,10 +37,15 @@ app.get('/countries', async (req, res) => {
     res.send(countries);
 
   }
+});
 
-
-
-
+app.post('/countries/en', async (req, res) => {
+  try {
+    await CountriesEn.insertMany(data);
+    res.send('Ok')
+  } catch(err) {
+    res.send(err);
+  }
 });
 
 // Get Country by ISOCode
