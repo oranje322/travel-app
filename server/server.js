@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./db.js');
 const path = require('path');
 const Countries = require('./models/Countries.js');
+const Countries_en = require('./models/Countries_en.js');
 const User = require('./models/User.js');
 const Ratings = require('./models/Ratings.js');
 const { check, validationResult } = require('express-validator');
@@ -19,9 +20,26 @@ app.use((req, res, next) => {
 });
 
 // Get Countries
+// app.get('/countries', async (req, res) => {
+//   const countries = await Countries.find();
+//   res.send(countries);
+// });
+
+// Get ru/en lang countries
 app.get('/countries', async (req, res) => {
-  const countries = await Countries.find();
-  res.send(countries);
+  if(req.query.lang === 'en') {
+    const countries_en = await Countries_en.find();
+    console.log(countries_en)
+    res.send(countries_en);
+  } else {
+    const countries = await Countries.find();
+    res.send(countries);
+
+  }
+
+
+
+
 });
 
 // Get Country by ISOCode
