@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;&family=Manrope:wght@200;300&display=swap");
 
-$light-green: hsl(64, 30%, 60%);
-$green: hsl(65, 30%, 40%);
+$light: hsl(27, 42%, 68%);
+$normal: hsl(27, 42%, 55%);
+$shadow: hsla(27, 12%, 28%, 0.65);
 
 @mixin widget() {
-  background: linear-gradient(148deg, $light-green 0%, $green 30%, $green 70%, $light-green 100%);
+  background: linear-gradient(148deg, $light 0%, $normal 30%, $normal 70%, $light 100%);
   color: white;
   padding: 1.25rem 2.5rem;
-  filter: drop-shadow(0.5rem 0.5rem 0.5rem #666b7b);
+  filter: drop-shadow(0.3rem 0.3rem 0.3rem $shadow);
 }
 
 @mixin fonts($family, $weight, $size) {

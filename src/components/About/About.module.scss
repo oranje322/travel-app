@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&family=Manrope:wght@200;300&display=swap");
-$light-green: hsl(64, 30%, 60%);
-$green: hsl(65, 30%, 40%);
+
+$light: hsl(27, 42%, 68%);
+$normal: hsl(27, 42%, 55%);
+$white: hsla(0, 0%, 100%, 0.8);
+$shadow: hsla(27, 12%, 28%, 0.65);
 
 .about {
   display: grid;
@@ -19,13 +22,13 @@ $green: hsl(65, 30%, 40%);
   grid-area: image;
   display: flex;
   justify-content: center;
-	align-items: center;
-	background: #fff;
-	background:  linear-gradient(148deg, $light-green 0%, #fff 30%, #fff 70%, $light-green 100%);
-  filter: drop-shadow(0.5rem 0.5rem 0.5rem #666b7b);
+  align-items: center;
+  background: $white;
+  background: linear-gradient(148deg, $light 0%, $white 30%, $white 70%, $light 100%);
+  filter: drop-shadow(0.3rem 0.3rem 0.3rem $shadow);
   img {
-		width: 100%;
-		max-height: 500px;
+    width: 100%;
+    max-height: 500px;
     height: auto;
   }
 }
@@ -33,14 +36,14 @@ $green: hsl(65, 30%, 40%);
 .descContainer {
   grid-area: desc;
   align-self: center;
-  background: linear-gradient(148deg, $light-green 0%, $green 30%, $green 70%, $light-green 100%);
+  background: linear-gradient(148deg, $light 0%, $normal 30%, $normal 70%, $light 100%);
   padding: 1.25rem 2.5rem;
   height: 100%;
   font-family: "Montserrat";
   font-weight: 200;
-	font-size: 1.5rem;
+  font-size: 1.5rem;
   color: white;
-  filter: drop-shadow(0.5rem 0.5rem 0.5rem #666b7b);
+  filter: drop-shadow(0.3rem 0.3rem 0.3rem $shadow);
 
   h2 {
     font-size: 2em;
