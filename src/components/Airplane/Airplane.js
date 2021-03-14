@@ -32,8 +32,8 @@ function Airplane() {
   const animatePlane = (plane) => {
     const planeParams = plane.getBoundingClientRect();
     const speed = {
-      x: planeParams.width / 15,
-      y: -2,
+      x: planeParams.width / 25,
+      y: -1 * planeParams.width / 80,
     };
 
     
