@@ -1,4 +1,5 @@
-import React, {ChangeEventHandler, useEffect, useState} from "react";
+import React, { useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import logo from "../assets/img/logo.png";
 import userImg from "../assets/img/log.png";
 import { Link } from "react-router-dom";
@@ -6,7 +7,7 @@ import { IState } from "../redux/reducers/reducerTypes";
 import { changeSearchThunk, logoutThunk } from "../redux/thunk/thunk";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
-import {setLang, setUserData} from "../redux/actions/actions";
+import { setLang, setUserData } from "../redux/actions/actions";
 
 interface IHeader {
   inputVisible: boolean;
@@ -15,7 +16,7 @@ interface IHeader {
 const Header = ({ inputVisible }: IHeader) => {
   const userData = useSelector((state: IState) => state.userData);
   const searchValue = useSelector((state: IState) => state.searchValue);
-  const selectLang = useSelector((state:IState) => state.lang)
+  const selectLang = useSelector((state: IState) => state.lang)
 
   const dispatch = useDispatch();
 
@@ -25,9 +26,11 @@ const Header = ({ inputVisible }: IHeader) => {
       dispatch(setUserData(JSON.parse(localUserData)));
     }
   }, []);
+  const { t, i18n } = useTranslation();
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeSearchThunk(e.target.value));
+
   };
 
   const handleKeyPressInput = (e: React.KeyboardEvent) => {
@@ -40,8 +43,10 @@ const Header = ({ inputVisible }: IHeader) => {
     dispatch(logoutThunk());
   };
 
-  const handleChangeLang = (e:React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setLang(e.target.value))
+    i18n.changeLanguage(e.target.value);
+    console.log(i18n.language);
   }
 
   return (
@@ -60,7 +65,7 @@ const Header = ({ inputVisible }: IHeader) => {
               value={searchValue}
               autoFocus
               className={"search-input"}
-              placeholder={"поиск"}
+              placeholder={t("search")}
               type="search"
             />
           )}
@@ -75,13 +80,13 @@ const Header = ({ inputVisible }: IHeader) => {
 
           {userData.name ? (
             <Button size="large" onClick={logout}>
-              Выход
+              {t("exit")}
             </Button>
           ) : (
-            <Link style={{ textDecoration: "none" }} to="/login">
-              <Button size="large">Вход</Button>
-            </Link>
-          )}
+              <Link style={{ textDecoration: "none" }} to="/login">
+                <Button size="large">{t("enter")}</Button>
+              </Link>
+            )}
         </div>
       </header>
     </div>

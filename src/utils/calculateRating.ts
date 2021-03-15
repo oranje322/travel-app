@@ -17,5 +17,5 @@ export const nameRateArray = (array: IRatingResponse[]) => {
 			rate: obj.rating
 		}
 	})
-	return nameRate.filter(({ name }) => name != undefined)
+	return nameRate.filter(({ name }) => name !== undefined)
 }

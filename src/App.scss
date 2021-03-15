@@ -59,26 +59,30 @@ body{
 }
 
 .header {
+	margin: 4rem auto;
+	width: 90vw;
+	max-width: $max-width;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	.logo {
 		max-width: 24rem;
-		position: relative;
-		top: 0.5em;
 	}
 	.side-block {
 		display: flex;
 		align-items: center;
+		font-size: 1.2rem;
 		.search-input {
-			@include fonts(Montserrat, 200, 1.6rem);
+			@include fonts(Montserrat, 200, 1em);
+			text-transform: uppercase;
 			padding: 0.56rem 0.375rem;
 			background: rgba(239, 239, 239, 0.49);
 			border: none;
 			outline: none;
 		}
 		.select-lang {
-			@include fonts(Montserrat, 200, 1.6rem);
+			@include fonts(Montserrat, 200, 1em);
+			text-transform: uppercase;
 			padding: 0.56rem;
 			margin-left: 1rem;
 			background: rgba(239, 239, 239, 0.49);
@@ -91,8 +95,11 @@ body{
 		}
 
 		button {
+			padding: 0.2em 11px;
+			border-radius: 0;
 			font-family: 'Montserrat';
-			font-size: inherit;
+			font-size: 1em;
+			font-weight: 200;
 		}
 	}
 }
@@ -135,9 +142,10 @@ body{
 				position: relative;
 				overflow:hidden;
 				box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 6px 8px 10px 1px rgba(0, 0, 0, 0.25);
+				background-color: rgba(0,0,0,0.5);
 				&:hover{
 					.card-text{
-						font-size: 4rem;
+						opacity: 0;
 					}
 					.card-img {
 						filter: blur(0);
@@ -148,8 +156,8 @@ body{
 					width: 100%;
 					height: 100%;
 					object-fit: cover;
-					filter: blur(0.1rem);
-					transition: all 0.5s linear;
+					filter: blur(0.1rem) saturate(75%);
+					transition: all 0.5s ease-in-out;
 					}
 				}
 				.card-text {
@@ -160,7 +168,7 @@ body{
 					transform: translate(-50%, -50%);
 					color: #FFFAFA;
 					text-shadow: 0px 4px 4px $dark-grey;
-					transition: all 0.5s linear;
+					transition: all 0.5s ease-in-out;
 				}
 			}
 

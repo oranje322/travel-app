@@ -37,6 +37,9 @@ export const StarRating = ({ id }: Rating) => {
     Api.setRating(id, userName, rating).then(r => setStarsValue(calculateRating(r.data)))
   }
   const [style, setStyle] = useState({ display: 'none' });
+  const toggle = (act: string) => {
+    act === 'over' ? setStyle({ display: 'flex' }) : setStyle({ display: 'none' })
+  }
 
   return (
     <>
@@ -48,8 +51,8 @@ export const StarRating = ({ id }: Rating) => {
           style={{ fontSize: '30px', outline: "none", border: "none" }}
         />
       </div>
-      <button className="show-star" onMouseOver={() => { setStyle({ display: 'flex' }) }}
-        onMouseOut={() => setStyle({ display: 'none' })}>Все</button>
+      <button className="show-star" onMouseOver={() => toggle('over')}
+        onMouseOut={() => toggle('out')}>все</button>
       <div className="show-star_other" style={style}>
         {
           array.map(item => {
