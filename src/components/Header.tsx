@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useTranslation } from 'react-i18next';
 import logo from "../assets/img/logo.png";
 import userImg from "../assets/img/log.png";
 import { Link } from "react-router-dom";
@@ -24,6 +25,12 @@ const Header = ({ inputVisible }: IHeader) => {
       dispatch(setUserData(JSON.parse(localUserData)));
     }
   }, []);
+  const { t, i18n } = useTranslation();
+  // const ChangeLang = (ln: string) => {
+  //   return () => {
+  //     i18n.changeLanguage(ln);
+  //   };
+  // };
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeSearchThunk(e.target.value));
@@ -38,7 +45,6 @@ const Header = ({ inputVisible }: IHeader) => {
   const logout = () => {
     dispatch(logoutThunk());
   };
-
   return (
     <div className="container header">
       <header className={"header"}>
@@ -55,11 +61,11 @@ const Header = ({ inputVisible }: IHeader) => {
               value={searchValue}
               autoFocus
               className={"search-input"}
-              placeholder={"поиск"}
+              placeholder={t("search")}
               type="search"
             />
           )}
-          <select onChange={() => alert("не ругаюсь")} className={"select-lang"} value={"ru"} name="" id="">
+          <select onChange={() => { console.log('я тут') }} className={"select-lang"} value={"ru"} name="" id="">
             <option value="ru">ru</option>
             <option value="en">en</option>
             <option value="de">de</option>
@@ -70,13 +76,13 @@ const Header = ({ inputVisible }: IHeader) => {
 
           {userData.name ? (
             <Button size="large" onClick={logout}>
-              Выход
+              {t("exit")}
             </Button>
           ) : (
-            <Link style={{ textDecoration: "none" }} to="/login">
-              <Button size="large">Вход</Button>
-            </Link>
-          )}
+              <Link style={{ textDecoration: "none" }} to="/login">
+                <Button size="large">{t("enter")}</Button>
+              </Link>
+            )}
         </div>
       </header>
     </div>

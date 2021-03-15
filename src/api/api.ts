@@ -13,7 +13,7 @@ const currencyApiUrl = 'https://api.exchangeratesapi.io/latest'
 export const Api = {
 
 	getCountries(): Promise<any> {
-		return instance.get("/countries");
+		return instance.get("/countries_en");
 	},
 
 	getTemperature(coordinates: number[], lang: string): Promise<any> {
