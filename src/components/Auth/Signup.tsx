@@ -35,7 +35,7 @@ function Signup() {
         let res = await Api.signup(JSON.stringify(formData));
         localStorage.setItem("userData", JSON.stringify(res.data));
         dispatch(setUserData(res.data));
-        history.push("/");
+        history.goBack();
       } catch (err) {
         setErrors({ ...errors, server: err.response.data.errors.map((err: any) => err.msg) });
       }

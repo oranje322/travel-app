@@ -24,7 +24,7 @@ const Login = () => {
       let res = await Api.login(JSON.stringify(formData));
       localStorage.setItem("userData", JSON.stringify(res.data));
       dispatch(setUserData(res.data));
-      history.push("/");
+      history.goBack();
     } catch (err) {
       setErrors(err.response.data.errors.map((err: any) => err.msg));
     }
