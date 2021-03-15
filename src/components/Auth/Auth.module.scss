@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&family=Playfair+Display:wght@400;500&family=Roboto:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&family=Playfair+Display:wght@400;500&family=Roboto:wght@300&display=swap");
+$normal: hsl(27, 42%, 55%);
 
 .wrapper {
   display: flex;
@@ -9,13 +10,13 @@
   bottom: 0;
   left: 0;
   right: 0;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 200;
   font-size: 1.8rem;
-  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('../../assets/img/background.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: top;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../../assets/img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
 }
 
 .formContainer {
@@ -41,7 +42,7 @@
   }
 
   p {
-    font-size: 0.8em;
+    font-size: 0.6em;
   }
 
   button {
@@ -57,19 +58,30 @@
 
 .form {
   div {
-    margin-bottom: 1em;
-		width: 100%;
+    margin-bottom: 1rem;
+    width: 100%;
   }
 
-	button {
-		margin-top: 2.5rem;
-	}
+  button {
+    margin-top: 4rem;
+  }
 }
 
 .helperText {
-	margin: 0;
-	position: absolute;
+  margin: 0;
+  position: absolute;
   color: red;
-	text-align: left;
-	white-space: break-spaces;
+  text-align: left;
+  white-space: break-spaces;
+}
+
+.uploadBtn {
+  margin: 0 auto;
+  img {
+    display: block;
+    margin: 0.5em auto 0;
+  }
+  span {
+    font-family: "Montserrat";
+  }
 }
