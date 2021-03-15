@@ -15,8 +15,12 @@ function Signup() {
     name: "",
     photo: "",
   });
-  const [isFromTouched, setIsFromTouched] = useState<boolean>(false);
-  const [errors, setErrors] = useState<any>([]);
+  const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
+  const [errors, setErrors] = useState<{ photo: string; password: string; server: string[] | null }>({
+    photo: "",
+    password: "",
+    server: null,
+  });
 
   const dispatch = useDispatch();
 
@@ -24,15 +28,16 @@ function Signup() {
 
   const onSubmitHandler = async (event: any) => {
     event.preventDefault();
-    setIsFromTouched(true);
-    if (errors.length === 0) {
+    setIsFormSubmitted(true);
+    if (!errors.password && !errors.photo) {
+      setErrors({ ...errors, server: null });
       try {
         let res = await Api.signup(JSON.stringify(formData));
         localStorage.setItem("userData", JSON.stringify(res.data));
         dispatch(setUserData(res.data));
         history.push("/");
       } catch (err) {
-        setErrors(err.response.data.errors.map((err: any) => err.msg));
+        setErrors({ ...errors, server: err.response.data.errors.map((err: any) => err.msg) });
       }
     }
   };
@@ -42,18 +47,38 @@ function Signup() {
     const value = event.target.value;
     setFormData({ ...formData, [name]: value });
 
-    if (
-      name === "photo" &&
-      !value.match(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=.]+$/) &&
-      value.length > 0
-    ) {
-      setErrors(["Ссылка на аватар некорректна"]);
-      return;
-    } else if (name === "password" && value.length < 6) {
-      setErrors(["Пароль должен содержать более 6 символов"]);
+    if (name === "password" && value.length < 6) {
+      setErrors({ ...errors, password: "Пароль должен содержать более 6 символов" });
       return;
     } else {
-      setErrors([]);
+      setErrors({ ...errors, password: "" });
+    }
+  };
+
+  const onPhotoLoadHandler = (event: any) => {
+    const file = event.target.files[0];
+
+    if (file === undefined) {
+      return;
+    } else if (!file.type.match(/^image\/\w*$/)) {
+      setErrors({ ...errors, photo: "Загрузить можно только картинку" });
+      return;
+    } else if (file.size / 1024 / 1024 > 1) {
+      setErrors({ ...errors, photo: "Превышен максимальный размер файла 1МБ" });
+      return;
+    } else {
+      setErrors({ ...errors, photo: "" });
+
+      const reader = new FileReader();
+      console.log(reader);
+      reader.onloadend = function () {
+        if (typeof reader.result === "string") {
+          setFormData({ ...formData, photo: reader.result });
+        } else {
+          setFormData({ ...formData, photo: "" });
+        }
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -76,17 +101,26 @@ function Signup() {
             onChange={onChangeHandler}
             required
           />
-          <Input
-            type="text"
-            name="photo"
-            placeholder="Ссылка на аватар или ничего"
-            value={photo}
-            onChange={onChangeHandler}
-          />
-          {errors.length > 0 && isFromTouched && <p className={classes.helperText}>{errors.join("\r\n")}</p>}
-          <Button type="submit" disabled={errors.length > 0 && isFromTouched}>
-            Подтвердить
-          </Button>
+          <div className={classes.uploadBtn} >
+            <label htmlFor="upload-photo">
+              <input
+                style={{ display: "none" }}
+                id="upload-photo"
+                name="upload-photo"
+                type="file"
+                accept=".jpg, .jpeg, .png"
+                onChange={(event) => onPhotoLoadHandler(event)}
+              />
+              <Button variant="outlined" component="span">
+                Загрузить фото
+              </Button>
+              {photo && <img src={photo} width="50" alt="" title="Ваше фото" />}
+            </label>
+          </div>
+          {(errors.password || errors.server || errors.photo) && isFormSubmitted && (
+            <p className={classes.helperText}>{Object.values(errors).join("\r\n")}</p>
+          )}
+          <Button type="submit">Подтвердить</Button>
         </form>
         <p className={classes.text}>
           Уже есть аккаунт? <Link to="/login">Войти</Link>
