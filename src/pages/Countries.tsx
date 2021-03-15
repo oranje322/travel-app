@@ -75,17 +75,7 @@ const Countries = () => {
 						</div>
 					</div>
 
-					<div className="video-block">
-						<iframe
-							title={country.country}
-							width="1366"
-							height="768"
-							src={`https://www.youtube.com/embed/${country.videoURL}`}
-							frameBorder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							allowFullScreen
-						></iframe>
-					</div>
+					<Video videoURL={country.videoURL} country={country.country} />
 
 					<div className="map">
 						<div>
