@@ -14,10 +14,13 @@ function Widgets(props: Props) {
 
   const [temperature, setTemperature] = useState<number | string>("");
   const [temperatureIcon, setTemperatureIcon] = useState<string>("");
+  const [temperatureDesc, setTemperatureDesc] = useState<string>('')
   const [currency, setCurrency] = useState<{ [index: string]: any }>({ USD: 0, EUR: 0, RUB: 0 });
 
   useEffect(() => {
     Api.getTemperature(country.coordinates, lang).then((r) => {
+      console.log(r.data)
+      setTemperatureDesc(r.data.weather[0].description)
       setTemperature(Math.round(r.data.main.temp));
       setTemperatureIcon(r.data.weather[0].icon);
     });
@@ -57,6 +60,7 @@ function Widgets(props: Props) {
 
       <div className={[classes.weather, classes.widget].join(" ")}>
         <img src={`http://openweathermap.org/img/wn/${temperatureIcon}.png`} alt="weather" />
+        <span>{temperatureDesc}</span>
         <span>{temperature} °С</span>
       </div>
 
