@@ -11,6 +11,7 @@ import { Map } from "../components/Map";
 import Footer from "../components/Footer";
 import About from "../components/About/About";
 import Widget from "../components/Widgets/Widgets";
+import Video from "../components/Video/Video.js";
 
 interface paramTypes {
 	ISOCode: string;
