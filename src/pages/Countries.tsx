@@ -10,6 +10,7 @@ import {Map} from "../components/Map";
 import Footer from "../components/Footer";
 import About from "../components/About/About";
 import Widget from "../components/Widgets/Widgets";
+import Video from "../components/Video/Video.js";
 
 
 interface paramTypes {
@@ -71,17 +72,7 @@ const Countries = () => {
             </div>
           </div>
 
-          <div className="video-block">
-            <iframe
-              title={country.country}
-              width="1366"
-              height="768"
-              src={`https://www.youtube.com/embed/${country.videoURL}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
+					<Video country={country.country} videoURL={country.videoURL} />
 
           <div className="map">
             <div>
