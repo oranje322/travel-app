@@ -34,7 +34,6 @@ const Countries = () => {
 
 	useEffect(() => {
 		i18n.changeLanguage(lang);
-		console.log('lang: ', lang);
 	}, []);
 
 	// функция рендера картинок галереи
