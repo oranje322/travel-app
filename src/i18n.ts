@@ -4,7 +4,7 @@ import EN from './locales/en.json';
 import RU from './locales/ru.json';
 import DE from './locales/de.json';
 
-const resources = {
+export const resources = {
     en: {
         translation: EN
     },
@@ -14,7 +14,7 @@ const resources = {
     de: {
         translation: DE
     }
-};
+} as const;
 
 i18n.use(initReactI18next).init({
     lng: 'ru',

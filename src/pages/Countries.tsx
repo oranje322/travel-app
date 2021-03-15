@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../countries.scss";
+import "../css/countries.scss";
 import { useTranslation } from 'react-i18next';
 import Header from "../components/Header";
 import ImageGallery from "react-image-gallery";
@@ -30,6 +30,11 @@ const Countries = () => {
 		}, []);
 		return null;
 	}
+
+	useEffect(() => {
+		i18n.changeLanguage(lang);
+		console.log('lang: ', lang);
+	}, []);
 
 	// функция рендера картинок галереи
 	const myRenderItem = (props: any) => {

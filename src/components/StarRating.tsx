@@ -45,6 +45,7 @@ export const StarRating = ({ id }: Rating) => {
     <>
       <div className={'star-rating'}>
         <Rate count={5}
+          key={1}
           value={starsValue}
           allowHalf={true}
           onChange={(rating) => onClickChangeRate(rating)}
@@ -55,8 +56,8 @@ export const StarRating = ({ id }: Rating) => {
         onMouseOut={() => toggle('out')}>все</button>
       <div className="show-star_other" style={style}>
         {
-          array.map(item => {
-            return <div className="show-star_other_item">
+          array.map((item, index) => {
+            return <div key={index} className="show-star_other_item">
               <p>{item.name}</p>
               <Rate count={5}
                 value={item.rate}

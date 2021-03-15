@@ -28,7 +28,7 @@ $shadow: hsla(27, 12%, 28%, 0.65);
 }
 
 body {
-  background-image: url("./assets/img/back-full.jpg");
+  background-image: url("../assets/img/back-full.jpg");
 }
 
 .countries {
@@ -38,7 +38,7 @@ body {
   position: relative;
 
   &:before {
-    content: url("./assets/img/vecror-wave-country.png");
+    content: url("../assets/img/vecror-wave-country.png");
     position: absolute;
     z-index: 1;
     top: 10rem;
@@ -256,7 +256,7 @@ body {
     }
 
     &:before {
-      content: url("./assets/img/vecror-wave-500.png");
+      content: url("../assets/img/vecror-wave-500.png");
       top: 12rem;
     }
   }

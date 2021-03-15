@@ -46,7 +46,6 @@ const Header = ({ inputVisible }: IHeader) => {
   const handleChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setLang(e.target.value))
     i18n.changeLanguage(e.target.value);
-    console.log(i18n.language);
   }
 
   return (

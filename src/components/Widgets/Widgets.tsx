@@ -61,7 +61,7 @@ function Widgets(props: Props) {
       </div>
 
       <div className={[classes.time, classes.widget].join(" ")}>
-        <Clock lang={"RU"} timeZone={country.timezone} />
+        <Clock lang={lang} timeZone={country.timezone} />
       </div>
     </div>
   );

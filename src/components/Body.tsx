@@ -10,13 +10,12 @@ const Body = () => {
 	const countriesMass = useSelector((state: IState) => state.countries)
 	const searchValue = useSelector((state: IState) => state.searchValue)
 	const filteredCountries = useSelector((state: IState) => state.filteredCountries)
-	// const lang = useSelector((state: IState) => state.lang);
+	const lang = useSelector((state: IState) => state.lang);
 	const { t, i18n } = useTranslation();
 
-	// useEffect(() => {
-	// 	i18n.changeLanguage(lang);
-	// 	console.log('lang: ', lang);
-	// }, [])
+	useEffect(() => {
+		i18n.changeLanguage(lang);
+	}, []);
 
 	return (
 		<div className="container body">
