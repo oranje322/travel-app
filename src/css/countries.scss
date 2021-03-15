@@ -28,7 +28,7 @@ $shadow: hsla(27, 12%, 28%, 0.65);
 }
 
 body {
-  background-image: url("./assets/img/back-full.jpg");
+  background-image: url("../assets/img/back-full.jpg");
 }
 
 .countries {
@@ -38,7 +38,7 @@ body {
   position: relative;
 
   &:before {
-    content: url("./assets/img/vecror-wave-country.png");
+    content: url("../assets/img/vecror-wave-country.png");
     position: absolute;
     z-index: 1;
     top: 10rem;
@@ -166,32 +166,26 @@ body {
     //container
     &-rating {
       display: flex;
-      flex-flow: row-reverse;
       position: absolute;
       top: 0.5rem;
       left: 3rem;
     }
   }
 
-  .star:hover,
-  .star:hover ~ .star,
-  .star.selected {
-    background-color: #f9cf02;
-  }
 }
 .show-star {
   position: absolute;
-  top: 3rem;
+  top: 3.5rem;
   left: 3.5rem;
   padding: 0 1rem;
   border: 0;
-  @include fonts(Montserrat, 200, 1.5rem);
+  @include fonts(Montserrat, 200, 1.2rem);
   background-color: rgba(238, 238, 238, 0.52);
   outline: none;
   cursor: pointer;
   &_other {
     position: absolute;
-    top: 8rem;
+    top: 8.5rem;
     left: 2rem;
     font-size: 1rem;
     color: white;
@@ -255,7 +249,7 @@ body {
     }
 
     &:before {
-      content: url("./assets/img/vecror-wave-500.png");
+      content: url("../assets/img/vecror-wave-500.png");
       top: 12rem;
     }
   }

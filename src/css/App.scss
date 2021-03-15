@@ -23,11 +23,11 @@ select {
 }
 
 body{
-	background-image: url('./assets/img/back-full.jpg');
+	background-image: url('../assets/img/back-full.jpg');
 }
 
 .app {
-	background: url('./assets/img/pic.png') no-repeat;
+	background: url('../assets/img/pic.png') no-repeat;
 	background-size: 1920px 770px;
 	overflow: hidden;
 }
@@ -260,12 +260,12 @@ body{
 	background-size: 400px 150px;
 	position: relative;
 		&::before{
-			content: url('./assets/img/vecror-wave-425.png');
+			content: url('../assets/img/vecror-wave-425.png');
 			top: 85rem;
 			position: absolute;
 		}
 		&::after{
-			content: url('./assets/img/wave-425.png');
+			content: url('../assets/img/wave-425.png');
 			bottom: 85rem;
 			position: absolute;
 			z-index: 0;
