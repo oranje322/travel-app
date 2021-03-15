@@ -7,7 +7,6 @@ const CountriesDe = require('./models/Countries_de.js');
 const User = require('./models/User.js');
 const Ratings = require('./models/Ratings.js');
 const { check, validationResult } = require('express-validator');
-const data = require("./en.js");
 
 
 const app = express();

@@ -6,7 +6,7 @@ import {setCountries, setFilteredCountries, setSearchValue, setUserData} from ".
 
 export const setCountriesThunk = (): ThunkAction<void, IState, unknown, ActionsTypes> => {
 	return async (dispatch, getState) => {
-		let response = await Api.getCountries();
+		let response = await Api.getCountries(getState().lang);
 		dispatch(setCountries(response.data));
 		sessionStorage.setItem('travel-app-state', JSON.stringify(getState()))
 	};
