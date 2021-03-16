@@ -32,6 +32,7 @@ const customStyles = {
 		...provided,
 		background: 'rgba(239, 239, 239, 0.49)',
 		minHeight: 42,
+		cursor: 'pointer',
 	}),
 	dropdownIndicator: (provided: any, state: any) => ({
 		display: 'none'
@@ -77,8 +78,8 @@ const SelectLang = () => {
 							isSearchable={false}
 			/>
 		</div>
-)
-	;
+	)
+		;
 };
 
 export default SelectLang;
