@@ -54,7 +54,7 @@ const Login = () => {
           <Input
             type="password"
             name="password"
-            placeholder={t("email")}
+            placeholder={t("pass")}
             value={password}
             onChange={onChangeHandler}
             required
