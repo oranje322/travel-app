@@ -7,7 +7,8 @@ import { IState } from "../redux/reducers/reducerTypes";
 import { changeSearchThunk, logoutThunk } from "../redux/thunk/thunk";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@material-ui/core";
-import { setLang, setUserData } from "../redux/actions/actions";
+import { setUserData } from "../redux/actions/actions";
+import SelectLang from "./SelectLang/SelectLang";
 
 interface IHeader {
   inputVisible: boolean;
@@ -16,7 +17,6 @@ interface IHeader {
 const Header = ({ inputVisible }: IHeader) => {
   const userData = useSelector((state: IState) => state.userData);
   const searchValue = useSelector((state: IState) => state.searchValue);
-  const selectLang = useSelector((state: IState) => state.lang)
 
   const dispatch = useDispatch();
 
@@ -43,11 +43,6 @@ const Header = ({ inputVisible }: IHeader) => {
     dispatch(logoutThunk());
   };
 
-  const handleChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setLang(e.target.value))
-    i18n.changeLanguage(e.target.value);
-  }
-
   return (
     <div className="container header">
       <header className={"header"}>
@@ -68,11 +63,7 @@ const Header = ({ inputVisible }: IHeader) => {
               type="search"
             />
           )}
-          <select onChange={(e) => handleChangeLang(e)} className={"select-lang"} value={selectLang}>
-            <option value="ru">ru</option>
-            <option value="en">en</option>
-            <option value="de">de</option>
-          </select>
+          <SelectLang/>
           {userData.name && (
             <img className={"user-img"} src={userData.photo || userImg} alt={userData.name} title={userData.name} />
           )}

@@ -79,6 +79,7 @@ body{
 			background: rgba(239, 239, 239, 0.49);
 			border: none;
 			outline: none;
+			margin-right: 0.8em;
 		}
 		.select-lang {
 			@include fonts(Montserrat, 200, 1em);
