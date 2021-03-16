@@ -42,8 +42,13 @@ function Signup() {
         localStorage.setItem("userData", JSON.stringify(res.data));
         dispatch(setUserData(res.data));
         history.goBack();
+        history.goBack();
       } catch (err) {
-        setErrors({ ...errors, server: err.response.data.errors.map((err: any) => err.msg) });
+        if (err.response) {
+          setErrors({ ...errors, server: err.response.data.errors.map((err: any) => err.msg) });
+        } else {
+          setErrors({ ...errors, server: err.message });
+        }
       }
     }
   };

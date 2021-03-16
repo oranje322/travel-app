@@ -12,7 +12,7 @@ const { check, validationResult } = require('express-validator');
 const app = express();
 
 connectDB();
-app.use(express.json({ extended: false }));
+app.use(express.json({ extended: false, limit: '1mb' }));
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
