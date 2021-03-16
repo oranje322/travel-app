@@ -79,12 +79,19 @@ body{
 			background: rgba(239, 239, 239, 0.49);
 			border: none;
 			outline: none;
-			margin-right: 0.8em;
+			height: 100%;
 		}
+
+		.search-button {
+			background: rgba(239, 239, 239, 0.49);
+			margin-right: 10px;
+			height: 100%;
+		}
+
 		.select-lang {
 			@include fonts(Montserrat, 200, 1em);
 			text-transform: uppercase;
-			padding: 0.56rem;
+			//padding: 0.56rem;
 			margin-left: 1rem;
 			background: rgba(239, 239, 239, 0.49);
 			border: none;
