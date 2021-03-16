@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Input } from "@material-ui/core";
 import { Api } from "../../api/api";
 import Airplane from "../Airplane/Airplane.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../../redux/actions/actions";
+import { useTranslation } from 'react-i18next';
+import { IState } from "../../redux/reducers/reducerTypes";
+
 
 const Login = () => {
   const history = useHistory();
@@ -15,9 +18,12 @@ const Login = () => {
   });
   const [errors, setErrors] = useState<any>([]);
   const { email, password } = formData;
-
+  const lang = useSelector((state: IState) => state.lang);
   const dispatch = useDispatch();
-
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, []);
   const onSubmitHandler = async (event: any) => {
     event.preventDefault();
     try {
@@ -40,24 +46,24 @@ const Login = () => {
       <Airplane />
       <div className={classes.formContainer}>
         <Button className={classes.backBtn} onClick={() => history.push("/")}>
-          На главную
+          {t("back-to-main")}
         </Button>
-        <h2>Войти</h2>
+        <h2>{true}</h2>
         <form className={classes.form} onSubmit={onSubmitHandler}>
-          <Input type="email" name="email" placeholder="Почта" value={email} onChange={onChangeHandler} required />
+          <Input type="email" name="email" placeholder={t("email")} value={email} onChange={onChangeHandler} required />
           <Input
             type="password"
             name="password"
-            placeholder="Пароль"
+            placeholder={t("email")}
             value={password}
             onChange={onChangeHandler}
             required
           />
           {errors.length > 0 && <p className={classes.helperText}>{errors.join("\r\n")}</p>}
-          <Button type="submit">Подтвердить</Button>
+          <Button type="submit"> {t("confirm")}</Button>
         </form>
         <p className={classes.text}>
-          Нет аккаунта? <Link to="/join">Зарегистрироваться</Link>
+          {t("no-acc")} <Link to="/join">{t("sign-up")}</Link>
         </p>
       </div>
     </div>

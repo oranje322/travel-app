@@ -5,7 +5,7 @@ import Rate from "rc-rate/es";
 import 'rc-rate/assets/index.css';
 import { useSelector } from "react-redux";
 import { IState } from "../redux/reducers/reducerTypes";
-
+import { useTranslation } from 'react-i18next';
 
 interface Rating {
   id: string
@@ -18,7 +18,7 @@ interface nameRate {
 export const StarRating = ({ id }: Rating) => {
   const [starsValue, setStarsValue] = useState(0);
   const [array, setArray] = useState<nameRate[]>([]);
-
+  const { t } = useTranslation();
   const userName = useSelector((state: IState) => state.userData.name)
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export const StarRating = ({ id }: Rating) => {
         />
       </div>
       <button className="show-star" onMouseOver={() => toggle('over')}
-        onMouseOut={() => toggle('out')}>все</button>
+        onMouseOut={() => toggle('out')}>{t("allStars")}</button>
       <div className="show-star_other" style={style}>
         {
           array.map((item, index) => {
