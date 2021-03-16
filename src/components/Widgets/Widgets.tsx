@@ -19,7 +19,6 @@ function Widgets(props: Props) {
 
   useEffect(() => {
     Api.getTemperature(country.coordinates, lang).then((r) => {
-      console.log(r.data);
       setTemperatureDesc(r.data.weather[0].description);
       setTemperature(Math.round(r.data.main.temp));
       setTemperatureIcon(r.data.weather[0].icon);

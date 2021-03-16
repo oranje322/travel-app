@@ -69,7 +69,6 @@ app.post('/rating', async (req, res) => {
 
 // Put attraction rating
 app.put('/rating', async (req, res) => {
-  console.log(req.body)
   try {
     const rating = await Ratings.findOneAndUpdate(
       { $and: [{attraction: req.body.attrId}, {userName: req.body.userName}] },

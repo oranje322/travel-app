@@ -13,7 +13,7 @@ export const initialState: IState = {
 	searchValue: '',
 	filteredCountries: [],
 	userData: {
-		name: 'noname',
+		name: '',
 		email: '',
 		photo: ''
 	},
