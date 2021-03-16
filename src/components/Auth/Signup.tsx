@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Input } from "@material-ui/core";
 import { Api } from "../../api/api";
 import Airplane from "../Airplane/Airplane.js";
 import { setUserData } from "../../redux/actions/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from 'react-i18next';
+import { IState } from "../../redux/reducers/reducerTypes";
 
 function Signup() {
   const history = useHistory();
@@ -16,16 +18,20 @@ function Signup() {
     photo: "",
   });
   const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
-  const [errors, setErrors] = useState<{ photo: string; password: string; server: string[] | null }>({
+  const [errors, setErrors] = useState<{ photo: string; password: any; server: string[] | null }>({
     photo: "",
     password: "",
     server: null,
   });
+  const lang = useSelector((state: IState) => state.lang);
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, []);
 
   const dispatch = useDispatch();
 
   const { email, password, name, photo } = formData;
-
+  const { t, i18n } = useTranslation();
   const onSubmitHandler = async (event: any) => {
     event.preventDefault();
     setIsFormSubmitted(true);
@@ -48,7 +54,10 @@ function Signup() {
     setFormData({ ...formData, [name]: value });
 
     if (name === "password" && value.length < 6) {
-      setErrors({ ...errors, password: "Пароль должен содержать более 6 символов" });
+      setErrors({
+        ...errors, password:
+          t("pass-rule")
+      });
       return;
     } else {
       setErrors({ ...errors, password: "" });
@@ -61,16 +70,15 @@ function Signup() {
     if (file === undefined) {
       return;
     } else if (!file.type.match(/^image\/\w*$/)) {
-      setErrors({ ...errors, photo: "Загрузить можно только картинку" });
+      setErrors({ ...errors, photo: t("photo-only") });
       return;
     } else if (file.size / 1024 / 1024 > 1) {
-      setErrors({ ...errors, photo: "Превышен максимальный размер файла 1МБ" });
+      setErrors({ ...errors, photo: t("photo-size") });
       return;
     } else {
       setErrors({ ...errors, photo: "" });
 
       const reader = new FileReader();
-      console.log(reader);
       reader.onloadend = function () {
         if (typeof reader.result === "string") {
           setFormData({ ...formData, photo: reader.result });
@@ -87,16 +95,16 @@ function Signup() {
       <Airplane />
       <div className={classes.formContainer}>
         <Button className={classes.backBtn} onClick={() => history.push("/")}>
-          На главную
+          {t("back-to-main")}
         </Button>
-        <h2>Регистрация</h2>
+        <h2>{t("sign-up")}</h2>
         <form className={classes.form} onSubmit={onSubmitHandler}>
-          <Input type="text" name="name" placeholder="Имя" value={name} onChange={onChangeHandler} required />
-          <Input type="email" name="email" placeholder="Почта" value={email} onChange={onChangeHandler} required />
+          <Input type="text" name="name" placeholder={t("name")} value={name} onChange={onChangeHandler} required />
+          <Input type="email" name="email" placeholder={t("email")} value={email} onChange={onChangeHandler} required />
           <Input
             type="password"
             name="password"
-            placeholder="Пароль"
+            placeholder={t("pass")}
             value={password}
             onChange={onChangeHandler}
             required
@@ -112,18 +120,18 @@ function Signup() {
                 onChange={(event) => onPhotoLoadHandler(event)}
               />
               <Button variant="outlined" component="span">
-                Загрузить фото
+                {t("photo-load")}
               </Button>
-              {photo && <img src={photo} width="50" alt="" title="Ваше фото" />}
+              {photo && <img src={photo} width="50" alt="" title={t("photo-your")} />}
             </label>
           </div>
           {(errors.password || errors.server || errors.photo) && isFormSubmitted && (
             <p className={classes.helperText}>{Object.values(errors).join("\r\n")}</p>
           )}
-          <Button type="submit">Подтвердить</Button>
+          <Button type="submit">{t("confirm")}</Button>
         </form>
         <p className={classes.text}>
-          Уже есть аккаунт? <Link to="/login">Войти</Link>
+          {t("have-acc")} <Link to="/login">{t("enter")}</Link>
         </p>
       </div>
     </div>

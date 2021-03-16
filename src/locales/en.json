@@ -6,5 +6,19 @@
     "enter": "log in",
     "title-where": "Let's pick a place!",
     "title-sights": "What shall you visit?",
-    "title-map": "Where is it??"
+    "title-map": "Where is it?",
+    "allStars": "other",
+    "pass-rule": "Password must be at least 6 symbols long",
+    "photo-only": "Only a picture can be uploaded",
+    "photo-size": "Exceeded a limit of 1MB",
+    "pass": "Password",
+    "name": "Name",
+    "email": "Email",
+    "back-to-main": "To main page",
+    "sign-up": "Sign up",
+    "confirm": "Confirm",
+    "photo-load": "Upload photo",
+    "photo-your": "Your photo",
+    "have-acc": " Already have an account?",
+    "no-acc": " Don't have an account yet?"
 }

@@ -6,5 +6,19 @@
     "enter": "einloggen",
     "title-where": "Wohin wirst du gehen?",
     "title-sights": "Was sollst du besuchen?",
-    "title-map": "Wo ist es?"
+    "title-map": "Wo ist es?",
+    "allStars": "Andere",
+    "pass-rule": "Passwort muss mindestens 6 Symbole lang sein",
+    "photo-only": "Es kann nur ein Bild hochgeladen werden",
+    "photo-size": "1 MB überschritten",
+    "pass": "Passwort",
+    "name": "Name",
+    "email": "Email",
+    "back-to-main": "Zur Hauptseite",
+    "sign-up": "Anmeldung",
+    "confirm": "bestätigen",
+    "photo-load": "Foto hochladen",
+    "photo-your": "Ihr Foto",
+    "have-acc": "Haben Sie bereits einen Account?",
+    "no-acc": " Noch keinen Account?"
 }
