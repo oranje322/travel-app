@@ -30,22 +30,27 @@ const customStyles = {
 	}),
 	control: (provided: any, state: any) => ({
 		...provided,
-		background: 'rgba(239, 239, 239, 0.49)'
+		background: 'rgba(239, 239, 239, 0.49)',
+		minHeight: 42,
+		cursor: 'pointer',
 	}),
 	dropdownIndicator: (provided: any, state: any) => ({
+		display: 'none'
+	}),
+	indicatorSeparator: (provided: any, state: any) => ({
 		display: 'none'
 	}),
 }
 
 const SelectLang = () => {
 
-	const lang = useSelector((state:IState) => state.lang)
+	const lang = useSelector((state: IState) => state.lang)
 
 	const dispatch = useDispatch()
 	const {t, i18n} = useTranslation();
 
 	const filterLang = () => {
-		if(lang === 'ru') {
+		if (lang === 'ru') {
 			return 0
 		} else if (lang === 'en') {
 			return 1
@@ -65,13 +70,16 @@ const SelectLang = () => {
 	}
 
 	return (
-		<Select options={options}
-						styles={customStyles}
-						value={selectedOption}
-						onChange={(e) => handleChangeLang(e)}
-						isSearchable={false}
-		/>
-	);
+		<div className={'select-lang'}>
+			<Select options={options}
+							styles={customStyles}
+							value={selectedOption}
+							onChange={(e) => handleChangeLang(e)}
+							isSearchable={false}
+			/>
+		</div>
+	)
+		;
 };
 
 export default SelectLang;
