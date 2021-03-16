@@ -76,12 +76,12 @@ const Header = ({inputVisible}: IHeader) => {
 					)}
 
 					{userData.name ? (
-						<Button size="large" onClick={logout}>
+						<Button className={'login-button'} size="large" onClick={logout}>
 							{t("exit")}
 						</Button>
 					) : (
 						<Link style={{textDecoration: "none"}} to="/login">
-							<Button size="large">{t("enter")}</Button>
+							<Button className={'login-button'} size="large">{t("enter")}</Button>
 						</Link>
 					)}
 				</div>
