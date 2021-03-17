@@ -9,6 +9,8 @@
     "title-map": "Where is it?",
     "allStars": "other",
     "pass-rule": "Password must be at least 6 symbols long",
+    "email-rule": "Invalid Email",
+    "name-rule": "Name is required",
     "photo-only": "Only a picture can be uploaded",
     "photo-size": "Exceeded a limit of 1MB",
     "pass": "Password",

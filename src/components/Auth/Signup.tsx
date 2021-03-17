@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Button, Input } from "@material-ui/core";
 import { Api } from "../../api/api";
 import Airplane from "../Airplane/Airplane.js";
+import validation from "../../utils/validation";
 import { setUserData } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
@@ -18,9 +19,10 @@ function Signup() {
     photo: "",
   });
   const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
-  const [errors, setErrors] = useState<{ photo: string; password: any; server: string[] | null }>({
+  const [errors, setErrors] = useState<{ photo: string; password: any; name: string, server: string[] | null }>({
     photo: "",
     password: "",
+    name: "",
     server: null,
   });
   const lang = useSelector((state: IState) => state.lang);
@@ -42,13 +44,8 @@ function Signup() {
         localStorage.setItem("userData", JSON.stringify(res.data));
         dispatch(setUserData(res.data));
         history.goBack();
-        history.goBack();
       } catch (err) {
-        if (err.response) {
-          setErrors({ ...errors, server: err.response.data.errors.map((err: any) => err.msg) });
-        } else {
-          setErrors({ ...errors, server: err.message });
-        }
+        setErrors({ ...errors, server: err.response.data.errors.map((err: any) => err.msg) });
       }
     }
   };
@@ -62,6 +59,12 @@ function Signup() {
       setErrors({
         ...errors, password:
           t("pass-rule")
+      });
+      return;
+    } else if (name === "name" && value.length < 1) {
+      setErrors({
+        ...errors, name:
+          t("name-rule")
       });
       return;
     } else {
@@ -104,15 +107,23 @@ function Signup() {
         </Button>
         <h2>{t("sign-up")}</h2>
         <form className={classes.form} onSubmit={onSubmitHandler}>
-          <Input type="text" name="name" placeholder={t("name")} value={name} onChange={onChangeHandler} required />
-          <Input type="email" name="email" placeholder={t("email")} value={email} onChange={onChangeHandler} required />
+          <Input type="text" name="name" placeholder={t("name")} value={name} onChange={onChangeHandler} />
+
+          <Input type="email" name="email" placeholder={t("email")} value={email}
+            onChange={(e) => {
+              onChangeHandler(e);
+              validation(e, 'email', t('email-rule'))
+            }}
+          />
           <Input
             type="password"
             name="password"
             placeholder={t("pass")}
             value={password}
-            onChange={onChangeHandler}
-            required
+            onChange={(e) => {
+              onChangeHandler(e);
+              validation(e, 'pass', t("pass-rule"))
+            }}
           />
           <div className={classes.uploadBtn} >
             <label htmlFor="upload-photo">

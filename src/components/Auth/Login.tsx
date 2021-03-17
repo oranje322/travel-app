@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Button, Input } from "@material-ui/core";
 import { Api } from "../../api/api";
 import Airplane from "../Airplane/Airplane.js";
+import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../../redux/actions/actions";
 import { useTranslation } from 'react-i18next';
@@ -21,9 +22,11 @@ const Login = () => {
   const lang = useSelector((state: IState) => state.lang);
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
+
   useEffect(() => {
     i18n.changeLanguage(lang);
   }, []);
+
   const onSubmitHandler = async (event: any) => {
     event.preventDefault();
     try {
@@ -50,14 +53,22 @@ const Login = () => {
         </Button>
         <h2>{t('login')}</h2>
         <form className={classes.form} onSubmit={onSubmitHandler}>
-          <Input type="email" name="email" placeholder={t("email")} value={email} onChange={onChangeHandler} required />
+          <Input type="email" name="email" placeholder={t("email")} value={email}
+            onChange={(e) => {
+              onChangeHandler(e);
+              validation(e, 'email', t('email-rule'))
+            }}
+          />
           <Input
             type="password"
             name="password"
             placeholder={t("pass")}
             value={password}
-            onChange={onChangeHandler}
-            required
+            inputProps={{ min: 0 }}
+            onChange={(e) => {
+              onChangeHandler(e);
+              validation(e, 'pass', t("pass-rule"))
+            }}
           />
           {errors.length > 0 && <p className={classes.helperText}>{errors.join("\r\n")}</p>}
           <Button type="submit"> {t("confirm")}</Button>
