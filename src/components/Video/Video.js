@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import classes from "./Video.module.scss";
 
 const Video = (props) => {

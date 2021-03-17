@@ -12,7 +12,6 @@ import Footer from "../components/Footer";
 import About from "../components/About/About";
 import Widget from "../components/Widgets/Widgets";
 import Video from "../components/Video/Video.js";
-import { log } from "util";
 
 interface paramTypes {
 	ISOCode: string;
@@ -82,7 +81,6 @@ const Countries = () => {
 						<div>
 							<h2 className="subtitle">{t("title-map")}</h2>
 							<Map coordinates={country.coordinates} code={country.ISOCode} />
-							{console.log(country)}
 						</div>
 					</div>
 				</div>

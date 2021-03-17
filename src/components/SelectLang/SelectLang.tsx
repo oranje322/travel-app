@@ -47,7 +47,7 @@ const SelectLang = () => {
 	const lang = useSelector((state: IState) => state.lang)
 
 	const dispatch = useDispatch()
-	const {t, i18n} = useTranslation();
+	const {i18n} = useTranslation();
 
 	const filterLang = () => {
 		if (lang === 'ru') {

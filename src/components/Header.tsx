@@ -26,7 +26,7 @@ const Header = ({inputVisible}: IHeader) => {
 			dispatch(setUserData(JSON.parse(localUserData)));
 		}
 	}, []);
-	const {t, i18n} = useTranslation();
+	const {t} = useTranslation();
 
 	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		dispatch(changeSearchThunk(e.target.value));
