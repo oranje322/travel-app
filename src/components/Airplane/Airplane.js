@@ -19,6 +19,9 @@ function Airplane() {
       initPlaneStyleParams(planes[i], planes[i].id);
     }
     animate();
+    return () => {
+      window.cancelAnimationFrame(reqId);
+    }
   }, [planes]);
 
   const animate = () => {
