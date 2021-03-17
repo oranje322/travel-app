@@ -16,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(setCountriesThunk());
-  }, [lang]);
+  }, [lang, dispatch]);
 
   return (
     <BrowserRouter>

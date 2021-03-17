@@ -26,14 +26,15 @@ function Signup() {
     server: null,
   });
   const lang = useSelector((state: IState) => state.lang);
+  const { t, i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(lang);
-  }, []);
+  }, [i18n, lang]);
 
   const dispatch = useDispatch();
 
   const { email, password, name, photo } = formData;
-  const { t, i18n } = useTranslation();
+
   const onSubmitHandler = async (event: any) => {
     event.preventDefault();
     setIsFormSubmitted(true);

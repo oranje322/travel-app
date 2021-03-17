@@ -25,13 +25,13 @@ export const StarRating = ({ id }: Rating) => {
     Api.getRating(id).then(r => {
       setStarsValue(calculateRating(r.data));
     })
-  }, [])
+  }, [id])
 
   useEffect(() => {
     Api.getRating(id).then(r => {
       setArray(nameRateArray(r.data))
     })
-  }, [])
+  }, [id])
 
   const onClickChangeRate = (rating: number) => {
     if (userName === "") return;

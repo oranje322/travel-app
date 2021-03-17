@@ -25,7 +25,7 @@ const Header = ({inputVisible}: IHeader) => {
 		if (localUserData) {
 			dispatch(setUserData(JSON.parse(localUserData)));
 		}
-	}, []);
+	}, [dispatch]);
 	const {t} = useTranslation();
 
 	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -25,7 +25,7 @@ const Login = () => {
 
   useEffect(() => {
     i18n.changeLanguage(lang);
-  }, []);
+  }, [i18n, lang]);
 
   const onSubmitHandler = async (event: any) => {
     event.preventDefault();

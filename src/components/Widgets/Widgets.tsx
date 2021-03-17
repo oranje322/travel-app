@@ -13,7 +13,7 @@ function Widgets(props: Props) {
   const { lang, country } = props;
 
   const [temperature, setTemperature] = useState<number | string>("");
-  const [temperatureIcon, setTemperatureIcon] = useState<string>("");
+  const [temperatureIcon, setTemperatureIcon] = useState<string>("13n");
   const [temperatureDesc, setTemperatureDesc] = useState<string>("");
   const [currency, setCurrency] = useState<{ [index: string]: any }>({ USD: 0, EUR: 0, RUB: 0 });
 
@@ -52,7 +52,7 @@ function Widgets(props: Props) {
                   <br />
                 </span>
               );
-            }
+            } else return ''
           })}
         </span>
       </div>

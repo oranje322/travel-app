@@ -15,7 +15,7 @@ const Body = () => {
 
 	useEffect(() => {
 		i18n.changeLanguage(lang);
-	}, []);
+	}, [i18n, lang]);
 
 	return (
 		<div className="container body">
