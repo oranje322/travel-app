@@ -31,6 +31,7 @@ $normal: hsl(27, 42%, 55%);
   h2 {
     margin-top: 3rem;
     font-weight: 200;
+    font-size: inherit;
   }
 
   a {
@@ -47,6 +48,7 @@ $normal: hsl(27, 42%, 55%);
 
   button {
     font-family: inherit;
+    font-size: inherit;
   }
 }
 
@@ -54,16 +56,19 @@ $normal: hsl(27, 42%, 55%);
   position: absolute !important;
   top: 2rem;
   left: 2rem;
+  font-size: inherit;
 }
 
 .form {
   div {
     margin-bottom: 1rem;
     width: 100%;
+    font-size: inherit;
   }
 
   button {
     margin-top: 4rem;
+    font-size: inherit;
   }
 }
 
@@ -77,11 +82,23 @@ $normal: hsl(27, 42%, 55%);
 
 .uploadBtn {
   margin: 0 auto;
+  font-size: inherit;
   img {
     display: block;
     margin: 0.5em auto 0;
   }
   span {
     font-family: "Montserrat";
+    font-size: inherit;
+  }
+}
+
+@media (max-width: 400px) {
+  .wrapper {
+    font-size: 14px;
+
+    h2 {
+      margin-top: 2.5em;
+    }
   }
 }

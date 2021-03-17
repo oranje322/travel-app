@@ -135,7 +135,7 @@ body {
   .leaflet-container {
     filter: drop-shadow(0.3rem 0.3rem 0.3rem $shadow);
     margin: 0 auto;
-    height: 700px;
+    height: 80vh;
     width: 100%;
   }
 
@@ -171,7 +171,6 @@ body {
       left: 3rem;
     }
   }
-
 }
 .show-star {
   position: absolute;
@@ -217,7 +216,7 @@ body {
       }
 
       .image-gallery-description {
-        @include fonts(Montserrat, 300, 2.5rem);
+        @include fonts(Montserrat, 300, 2rem);
       }
     }
   }
@@ -230,6 +229,16 @@ body {
   .app {
     background-size: 850px 450px;
   }
+  .countries {
+    .image-gallery-container {
+      .image-gallery-description {
+        @include fonts(Montserrat, 300, 1.3rem);
+      }
+    }
+    .leaflet-container {
+      height: 50vmin;
+    }
+  }
 }
 
 @media (max-width: 400px) {
@@ -239,8 +248,11 @@ body {
   .app {
     background-size: 450px 200px;
   }
-  .subtitle {
-    @include fonts(Manrope, 300, 7.27rem);
+  .body .body-title .subtitle {
+    @include fonts(Manrope, 300, 10px);
+  }
+  .body .countries-block .countries-grid .card-text {
+    font-size: 14px !important;
   }
   .countries {
     .img-block img {
@@ -251,6 +263,11 @@ body {
     &:before {
       content: url("../assets/img/vecror-wave-500.png");
       top: 12rem;
+    }
+    .image-gallery-container {
+      .image-gallery-description {
+        @include fonts(Montserrat, 300, 3rem);
+      }
     }
   }
   .image-gallery-slide .image-gallery-image {
@@ -268,4 +285,8 @@ body {
   div {
     outline: none;
   }
+}
+
+.star-rating .rc-rate {
+  font-size: 2.5rem !important;
 }

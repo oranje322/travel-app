@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import classes from "./Video.module.scss";
 
 const Video = (props) => {
@@ -9,6 +9,10 @@ const Video = (props) => {
       videoRef.current.height = videoRef.current.offsetWidth * 9 / 16;
     }
   };
+
+  useEffect(() => {
+    updateSize();
+  }, [])
 
   window.addEventListener("resize", updateSize);
 

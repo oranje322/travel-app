@@ -305,12 +305,32 @@ body{
 	}
 	.header {
 		.logo {
-			max-width: 14rem;
+			max-width: 24rem;
 		}
 		.side-block {
 			.user-img {
-				width: 2.7rem;
+				width: 6rem;
 				margin-left: 2rem;
+			}
+			.login-button {
+				font-size: 3rem;
+			}
+			.select-lang {
+				.css-ojy93d-container{
+					.css-ttdjdx-control{
+						height: 6rem;
+						width: 11rem;
+						font-size: 3rem;
+					}
+				}
+			}
+			.search-input {
+				@include fonts(Montserrat, 200, 3rem);
+				max-width: 20rem;
+				padding: 0.9rem 0.375rem;
+			}
+			.search-button {
+				@include fonts(Montserrat, 200, 3rem);
 			}
 		}
 	}
