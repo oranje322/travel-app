@@ -17,7 +17,7 @@ function Widgets(props: Props) {
   const [temperatureDesc, setTemperatureDesc] = useState<string>("");
   const [currency, setCurrency] = useState<{ [index: string]: any }>({ USD: 0, EUR: 0, RUB: 0 });
 
-  useEffect(() => {
+  useEffect( () => {
     Api.getTemperature(country.coordinates, lang).then((r) => {
       setTemperatureDesc(r.data.weather[0].description);
       setTemperature(Math.round(r.data.main.temp));
