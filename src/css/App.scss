@@ -231,6 +231,12 @@ body{
 		margin-right: 1.25rem;
 		//align-items: center;
 		font-size: 1.25rem;
+
+		.course-link{
+			display: flex;
+			text-decoration: none;
+			color: #2E2B2B;
+		}
 	}
 }
 

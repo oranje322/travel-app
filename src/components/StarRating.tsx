@@ -18,6 +18,7 @@ interface nameRate {
 export const StarRating = ({ id }: Rating) => {
   const [starsValue, setStarsValue] = useState(0);
   const [array, setArray] = useState<nameRate[]>([]);
+  const [isToggled, setIsToggled] = useState(false)
   const { t } = useTranslation();
   const userName = useSelector((state: IState) => state.userData.name)
 
@@ -31,7 +32,7 @@ export const StarRating = ({ id }: Rating) => {
     Api.getRating(id).then(r => {
       setArray(nameRateArray(r.data))
     })
-  }, [id])
+  }, [id, isToggled])
 
   const onClickChangeRate = (rating: number) => {
     if (userName === "") return;
@@ -40,6 +41,7 @@ export const StarRating = ({ id }: Rating) => {
   const [style, setStyle] = useState({ display: 'none' });
   const toggle = (act: string) => {
     act === 'over' ? setStyle({ display: 'flex' }) : setStyle({ display: 'none' })
+    setIsToggled(prev => !prev)
   }
 
   return (
