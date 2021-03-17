@@ -1,6 +1,8 @@
 import React from "react";
-import {MapContainer, TileLayer, Marker} from 'react-leaflet';
+import {MapContainer, TileLayer, Marker,Polygon,Tooltip} from 'react-leaflet';
 import L from 'leaflet';
+import { polygon } from "../utils/polygons";
+
 
 
 let myIcon = L.icon({
@@ -11,12 +13,14 @@ let myIcon = L.icon({
 })
 
 type MapProps = {
-  coordinates: any
+  coordinates: any,
+  code: any
 }
 
 
-export const Map: React.FC<MapProps> = ({coordinates}) => {
+export const Map: React.FC<MapProps> = ({coordinates, code}) => {
   const position: any = coordinates
+  const multiPolygon: any = polygon(code)
 
   return (
     <MapContainer center={position} zoom={9} scrollWheelZoom={true}>
@@ -26,6 +30,7 @@ export const Map: React.FC<MapProps> = ({coordinates}) => {
       />
       <Marker position={position} icon={myIcon}>
       </Marker>
+      <Polygon pathOptions={{ color: '#bc875c' }} positions={multiPolygon}/>
     </MapContainer>
   )
 };
