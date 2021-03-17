@@ -1,7 +1,6 @@
 import React from "react";
-import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
-import L from 'leaflet'
-import { LatLngTuple } from 'leaflet';
+import {MapContainer, TileLayer, Marker} from 'react-leaflet';
+import L from 'leaflet';
 
 
 let myIcon = L.icon({

@@ -6,9 +6,9 @@ function Clouds() {
 
   return (
     <div>
-			<img className={[classes.clouds, classes.cloud1].join(" ")} src={clouds} />
-			<img className={[classes.clouds, classes.cloud2].join(" ")} src={clouds} />
-			<img className={[classes.clouds, classes.cloud3].join(" ")} src={clouds} />
+			<img className={[classes.clouds, classes.cloud1].join(" ")} src={clouds} alt="cloud"/>
+			<img className={[classes.clouds, classes.cloud2].join(" ")} src={clouds} alt="cloud"/>
+			<img className={[classes.clouds, classes.cloud3].join(" ")} src={clouds} alt="cloud"/>
 		</div>
   );
 }

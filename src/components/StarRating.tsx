@@ -34,6 +34,7 @@ export const StarRating = ({ id }: Rating) => {
   }, [])
 
   const onClickChangeRate = (rating: number) => {
+    if (userName === "") return;
     Api.setRating(id, userName, rating).then(r => setStarsValue(calculateRating(r.data)))
   }
   const [style, setStyle] = useState({ display: 'none' });

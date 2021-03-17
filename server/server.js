@@ -12,7 +12,7 @@ const { check, validationResult } = require('express-validator');
 const app = express();
 
 connectDB();
-app.use(express.json({ extended: false }));
+app.use(express.json({ extended: false, limit: '1mb' }));
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
@@ -69,7 +69,6 @@ app.post('/rating', async (req, res) => {
 
 // Put attraction rating
 app.put('/rating', async (req, res) => {
-  console.log(req.body)
   try {
     const rating = await Ratings.findOneAndUpdate(
       { $and: [{attraction: req.body.attrId}, {userName: req.body.userName}] },

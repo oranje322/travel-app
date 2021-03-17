@@ -54,7 +54,7 @@ const Login = () => {
         <Button className={classes.backBtn} onClick={() => history.push("/")}>
           {t("back-to-main")}
         </Button>
-        <h2>{true}</h2>
+        <h2>{t('login')}</h2>
         <form className={classes.form} onSubmit={onSubmitHandler}>
           <TextField type="text" name="email" placeholder={t("email")} value={email} title="test"
             inputProps={{
