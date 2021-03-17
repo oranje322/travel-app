@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
-import { Button, Input, TextField } from "@material-ui/core";
+import { Button, Input } from "@material-ui/core";
 import { Api } from "../../api/api";
 import Airplane from "../Airplane/Airplane.js";
+import validation from "../../utils/validation";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../../redux/actions/actions";
 import { useTranslation } from 'react-i18next';
@@ -42,11 +43,7 @@ const Login = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     setErrors([]);
   };
-  const validation = (e: any) => {
-    const invalid = e.target.validity.patternMismatch;
-    invalid ? e.target.setCustomValidity(t("email-rule"))
-      : e.target.setCustomValidity("");
-  }
+
   return (
     <div className={classes.wrapper}>
       <Airplane />
@@ -56,20 +53,22 @@ const Login = () => {
         </Button>
         <h2>{t('login')}</h2>
         <form className={classes.form} onSubmit={onSubmitHandler}>
-          <TextField type="text" name="email" placeholder={t("email")} value={email} title="test"
-            inputProps={{
-              pattern: "[^@\s]+@[^@\s]+\.[^@\s]+",
+          <Input type="email" name="email" placeholder={t("email")} value={email}
+            onChange={(e) => {
+              onChangeHandler(e);
+              validation(e, 'email', t('email-rule'))
             }}
-            onChange={onChangeHandler}
-            onBlur={validation}
           />
           <Input
             type="password"
             name="password"
             placeholder={t("pass")}
             value={password}
-            onChange={onChangeHandler}
-            required
+            inputProps={{ min: 0 }}
+            onChange={(e) => {
+              onChangeHandler(e);
+              validation(e, 'pass', t("pass-rule"))
+            }}
           />
           {errors.length > 0 && <p className={classes.helperText}>{errors.join("\r\n")}</p>}
           <Button type="submit"> {t("confirm")}</Button>

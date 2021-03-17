@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
-import { Button, Input, TextField } from "@material-ui/core";
+import { Button, Input } from "@material-ui/core";
 import { Api } from "../../api/api";
 import Airplane from "../Airplane/Airplane.js";
+import validation from "../../utils/validation";
 import { setUserData } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
@@ -43,21 +44,12 @@ function Signup() {
         localStorage.setItem("userData", JSON.stringify(res.data));
         dispatch(setUserData(res.data));
         history.goBack();
-        history.goBack();
       } catch (err) {
-        if (err.response) {
-          setErrors({ ...errors, server: err.response.data.errors.map((err: any) => err.msg) });
-        } else {
-          setErrors({ ...errors, server: err.message });
-        }
+        setErrors({ ...errors, server: err.response.data.errors.map((err: any) => err.msg) });
       }
     }
   };
-  const validation = (e: any) => {
-    const invalid = e.target.validity.patternMismatch;
-    invalid ? e.target.setCustomValidity(t("email-rule"))
-      : e.target.setCustomValidity("");
-  }
+
   const onChangeHandler = (event: any) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -117,20 +109,21 @@ function Signup() {
         <form className={classes.form} onSubmit={onSubmitHandler}>
           <Input type="text" name="name" placeholder={t("name")} value={name} onChange={onChangeHandler} />
 
-          <TextField type="text" name="email" placeholder={t("email")} value={email} title="test"
-            inputProps={{
-              pattern: "[^@\s]+@[^@\s]+\.[^@\s]+",
+          <Input type="email" name="email" placeholder={t("email")} value={email}
+            onChange={(e) => {
+              onChangeHandler(e);
+              validation(e, 'email', t('email-rule'))
             }}
-            onChange={onChangeHandler}
-            onBlur={validation}
           />
           <Input
             type="password"
             name="password"
             placeholder={t("pass")}
             value={password}
-            onChange={onChangeHandler}
-            required
+            onChange={(e) => {
+              onChangeHandler(e);
+              validation(e, 'pass', t("pass-rule"))
+            }}
           />
           <div className={classes.uploadBtn} >
             <label htmlFor="upload-photo">
