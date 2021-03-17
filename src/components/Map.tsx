@@ -2,6 +2,9 @@ import React from "react";
 import {MapContainer, TileLayer, Marker,Polygon,Tooltip} from 'react-leaflet';
 import L from 'leaflet';
 import { polygon } from "../utils/polygons";
+import 'leaflet-fullscreen/dist/Leaflet.fullscreen'
+import 'leaflet-fullscreen/dist/leaflet.fullscreen.css'
+
 
 
 
@@ -23,7 +26,7 @@ export const Map: React.FC<MapProps> = ({coordinates, code}) => {
   const multiPolygon: any = polygon(code)
 
   return (
-    <MapContainer center={position} zoom={9} scrollWheelZoom={true}>
+    <MapContainer fullscreenControl={true} center={position} zoom={9} scrollWheelZoom={true}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
