@@ -12,7 +12,7 @@ $normal: hsl(27, 42%, 55%);
   right: 0;
   font-family: "Montserrat";
   font-weight: 200;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../../assets/img/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -29,9 +29,9 @@ $normal: hsl(27, 42%, 55%);
   box-shadow: 0px 18px 27px -1px rgba(0, 0, 0, 0.2);
 
   h2 {
-    margin-top: 3rem;
+    margin-top: 2em;
     font-weight: 200;
-    font-size: inherit;
+    font-size: 1em;
   }
 
   a {
@@ -48,7 +48,7 @@ $normal: hsl(27, 42%, 55%);
 
   button {
     font-family: inherit;
-    font-size: inherit;
+    font-size: 0.65em;
   }
 }
 
@@ -56,19 +56,19 @@ $normal: hsl(27, 42%, 55%);
   position: absolute !important;
   top: 2rem;
   left: 2rem;
-  font-size: inherit;
+  font-size: 0.65em;
 }
 
 .form {
   div {
     margin-bottom: 1rem;
     width: 100%;
-    font-size: inherit;
+    font-size: 1em;
   }
 
   button {
     margin-top: 4rem;
-    font-size: inherit;
+    font-size: 0.65em;
   }
 }
 
@@ -82,23 +82,18 @@ $normal: hsl(27, 42%, 55%);
 
 .uploadBtn {
   margin: 0 auto;
-  font-size: inherit;
   img {
     display: block;
     margin: 0.5em auto 0;
   }
   span {
     font-family: "Montserrat";
-    font-size: inherit;
+    font-size: 0.8em;
   }
 }
 
 @media (max-width: 400px) {
   .wrapper {
     font-size: 14px;
-
-    h2 {
-      margin-top: 2.5em;
-    }
   }
 }
