@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
-import { Button, Input } from "@material-ui/core";
+import { Button, Input, TextField } from "@material-ui/core";
 import { Api } from "../../api/api";
 import Airplane from "../Airplane/Airplane.js";
 import { setUserData } from "../../redux/actions/actions";
@@ -18,9 +18,10 @@ function Signup() {
     photo: "",
   });
   const [isFormSubmitted, setIsFormSubmitted] = useState<boolean>(false);
-  const [errors, setErrors] = useState<{ photo: string; password: any; server: string[] | null }>({
+  const [errors, setErrors] = useState<{ photo: string; password: any; name: string, server: string[] | null }>({
     photo: "",
     password: "",
+    name: "",
     server: null,
   });
   const lang = useSelector((state: IState) => state.lang);
@@ -47,7 +48,11 @@ function Signup() {
       }
     }
   };
-
+  const validation = (e: any) => {
+    const invalid = e.target.validity.patternMismatch;
+    invalid ? e.target.setCustomValidity(t("email-rule"))
+      : e.target.setCustomValidity("");
+  }
   const onChangeHandler = (event: any) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -57,6 +62,12 @@ function Signup() {
       setErrors({
         ...errors, password:
           t("pass-rule")
+      });
+      return;
+    } else if (name === "name" && value.length < 1) {
+      setErrors({
+        ...errors, name:
+          t("name-rule")
       });
       return;
     } else {
@@ -99,8 +110,15 @@ function Signup() {
         </Button>
         <h2>{t("sign-up")}</h2>
         <form className={classes.form} onSubmit={onSubmitHandler}>
-          <Input type="text" name="name" placeholder={t("name")} value={name} onChange={onChangeHandler} required />
-          <Input type="email" name="email" placeholder={t("email")} value={email} onChange={onChangeHandler} required />
+          <Input type="text" name="name" placeholder={t("name")} value={name} onChange={onChangeHandler} />
+
+          <TextField type="text" name="email" placeholder={t("email")} value={email} title="test"
+            inputProps={{
+              pattern: "[^@\s]+@[^@\s]+\.[^@\s]+",
+            }}
+            onChange={onChangeHandler}
+            onBlur={validation}
+          />
           <Input
             type="password"
             name="password"

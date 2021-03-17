@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Auth.module.scss";
 import { Link, useHistory } from "react-router-dom";
-import { Button, Input } from "@material-ui/core";
+import { Button, Input, TextField } from "@material-ui/core";
 import { Api } from "../../api/api";
 import Airplane from "../Airplane/Airplane.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,9 +21,11 @@ const Login = () => {
   const lang = useSelector((state: IState) => state.lang);
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
+
   useEffect(() => {
     i18n.changeLanguage(lang);
   }, []);
+
   const onSubmitHandler = async (event: any) => {
     event.preventDefault();
     try {
@@ -40,7 +42,11 @@ const Login = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     setErrors([]);
   };
-
+  const validation = (e: any) => {
+    const invalid = e.target.validity.patternMismatch;
+    invalid ? e.target.setCustomValidity(t("email-rule"))
+      : e.target.setCustomValidity("");
+  }
   return (
     <div className={classes.wrapper}>
       <Airplane />
@@ -50,7 +56,13 @@ const Login = () => {
         </Button>
         <h2>{true}</h2>
         <form className={classes.form} onSubmit={onSubmitHandler}>
-          <Input type="email" name="email" placeholder={t("email")} value={email} onChange={onChangeHandler} required />
+          <TextField type="text" name="email" placeholder={t("email")} value={email} title="test"
+            inputProps={{
+              pattern: "[^@\s]+@[^@\s]+\.[^@\s]+",
+            }}
+            onChange={onChangeHandler}
+            onBlur={validation}
+          />
           <Input
             type="password"
             name="password"
