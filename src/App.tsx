@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import "./css/App.scss";
 import Main from "./pages/Main";
 import Countries from "./pages/Countries";
@@ -19,14 +19,14 @@ const App = () => {
   }, [lang]);
 
   return (
-    <Fragment>
+    <BrowserRouter>
       <Switch>
         <Route path="/join" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/countries/:ISOCode" component={Countries} />
         <Route exact path="/" component={Main} />
       </Switch>
-    </Fragment>
+    </BrowserRouter>
   );
 };
 

@@ -7,7 +7,7 @@ const instance = axios.create({
 
 const apiKeyWeather = 'c69952b53bdb81d1c0e2f8bc3eb5666d'
 
-const weatherApiUrl = 'http://api.openweathermap.org/data/2.5/weather'
+const weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather'
 const currencyApiUrl = 'https://api.exchangeratesapi.io/latest'
 
 export const Api = {
