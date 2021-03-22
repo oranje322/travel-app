@@ -35,31 +35,31 @@ app.get('/countries', async (req, res) => {
   }
 });
 
-app.post('/countries/en', async (req, res) => {
-  try {
-    await CountriesEn.insertMany(data);
-    res.send('Ok')
-  } catch(err) {
-    res.send(err);
-  }
-});
+// app.post('/countries/en', async (req, res) => {
+//   try {
+//     await CountriesEn.insertMany(data);
+//     res.send('Ok')
+//   } catch(err) {
+//     res.send(err);
+//   }
+// });
 
 
 // Get Country by ISOCode
-app.get('/countries/:ISOCode', async (req, res) => {
-  try {
-    const country = await Countries.findOne({ISOCode: req.params.ISOCode.toUpperCase()});
-
-    if (!country) {
-      return res.status(400).json('No country found in database');
-    }
-
-    res.json(country);
-  } catch(err) {
-    console.error(err.message);
-    res.status(500).send('Server error');
-  }
-});
+// app.get('/countries/:ISOCode', async (req, res) => {
+//   try {
+//     const country = await Countries.findOne({ISOCode: req.params.ISOCode.toUpperCase()});
+//
+//     if (!country) {
+//       return res.status(400).json('No country found in database');
+//     }
+//
+//     res.json(country);
+//   } catch(err) {
+//     console.error(err.message);
+//     res.status(500).send('Server error');
+//   }
+// });
 
 // Get ratings
 app.post('/rating', async (req, res) => {

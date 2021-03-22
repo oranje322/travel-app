@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const instance = axios.create({
-	baseURL: "http://localhost:5000"
+	baseURL: "/"
 });
 
 const apiKeyWeather = 'c69952b53bdb81d1c0e2f8bc3eb5666d'
