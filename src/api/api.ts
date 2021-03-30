@@ -1,11 +1,13 @@
 import axios from "axios";
+const dotenv = require("dotenv");
+dotenv.config();
 
-
+// if you want start on localhost change baseurl to http://localhost:5000/
 const instance = axios.create({
 	baseURL: "/"
 });
 
-const apiKeyWeather = 'c69952b53bdb81d1c0e2f8bc3eb5666d'
+const apiKeyWeather = process.env.API_KEY_WEATHER
 
 const weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather'
 const currencyApiUrl = 'https://api.exchangeratesapi.io/latest'
