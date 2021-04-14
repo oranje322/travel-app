@@ -5,11 +5,11 @@ dotenv.config();
 
 // if you want start on localhost change baseurl to http://localhost:5000/
 const instance = axios.create({
-	baseURL: 'http://localhost:5000/'
-	// baseURL: "/"
+	// baseURL: 'http://localhost:5000/'
+	baseURL: "/"
 });
 
-const apiKeyWeather = process.env.API_KEY_WEATHER
+const apiKeyWeather = "c69952b53bdb81d1c0e2f8bc3eb5666d"
 
 const apiKeyCurrency = '99dd498e05e547d6b01b5e9778f49140'
 
