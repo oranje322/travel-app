@@ -27,15 +27,12 @@ function Widgets(props: Props) {
 
   useEffect(() => {
     Api.getСurrency(country.currency).then((r) => {
-      let [usd, eur, rub] = r.map((obj) => {
-        if (obj.status === "fulfilled") {
-          return obj.value.data.rates[country.currency].toFixed(2);
-        } else return 0;
-      });
+
+      if(r === undefined) return
       setCurrency({
-        USD: +usd,
-        EUR: +eur,
-        RUB: +rub,
+        USD: r.currencyInUSD.toFixed(2),
+        EUR: r.currencyInEUR.toFixed(2),
+        RUB: r.currencyInRUB.toFixed(2),
       });
     });
   }, [country.currency]);
@@ -48,7 +45,7 @@ function Widgets(props: Props) {
             if (key !== country.currency) {
               return (
                 <span key={index}>
-                  1 {getSymbolFromCurrency(key)} = {currency[key]} {getSymbolFromCurrency(country.currency)}
+                  1 {getSymbolFromCurrency(country.currency)} = {currency[key]} {getSymbolFromCurrency(key)}
                   <br />
                 </span>
               );

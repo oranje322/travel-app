@@ -1,16 +1,20 @@
 import axios from "axios";
+
 const dotenv = require("dotenv");
 dotenv.config();
 
 // if you want start on localhost change baseurl to http://localhost:5000/
 const instance = axios.create({
-	baseURL: "/"
+	baseURL: 'http://localhost:5000/'
+	// baseURL: "/"
 });
 
 const apiKeyWeather = process.env.API_KEY_WEATHER
 
+const apiKeyCurrency = '99dd498e05e547d6b01b5e9778f49140'
+
 const weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather'
-const currencyApiUrl = 'https://api.exchangeratesapi.io/latest'
+const currencyApiUrl = 'https://openexchangerates.org/api/latest.json'
 
 export const Api = {
 
@@ -48,20 +52,35 @@ export const Api = {
 		return instance.post("/join", body, config);
 	},
 
-	getСurrency(currency: string) {
-		return Promise.allSettled([
-			axios.get<ICurrencyResp>(`${currencyApiUrl}?symbols=${currency}&base=USD`),
-			axios.get<ICurrencyResp>(`${currencyApiUrl}?symbols=${currency}&base=EUR`),
-			axios.get<ICurrencyResp>(`${currencyApiUrl}?symbols=${currency}&base=RUB`),
-		])
+	async getСurrency(currency: string) {
+		try {
+			const countryCurrency = currency
+			const res = await axios.get<ICurrencyResp>(`${currencyApiUrl}?app_id=${apiKeyCurrency}`)
+			let countryCurrencyInUSD = 0;
+			for (let item in res.data.rates) {
+				if (item === countryCurrency) {
+					countryCurrencyInUSD = 1 / res.data.rates[item];
+				}
+			}
+			const exchange: ExchangeType = {
+				countryCurrency: countryCurrencyInUSD,
+				currencyInUSD: countryCurrencyInUSD * res.data.rates.USD,
+				currencyInEUR: countryCurrencyInUSD * res.data.rates.EUR,
+				currencyInRUB: countryCurrencyInUSD * res.data.rates.RUB,
+			};
+			return exchange
+		} catch (e) {
+			console.error(e)
+		}
+
 	},
 
 	getRating(id: string) {
-		return instance.post<IRatingResponse[]>('/rating', { id })
+		return instance.post<IRatingResponse[]>('/rating', {id})
 	},
 
 	setRating(attrId: string, userName: string, rating: number): Promise<any> {
-		return instance.put('/rating', { attrId, userName, rating })
+		return instance.put('/rating', {attrId, userName, rating})
 	}
 };
 
@@ -79,3 +98,10 @@ export interface IRatingResponse {
 	__v: number,
 	rating: number
 }
+
+type ExchangeType = {
+	countryCurrency: number;
+	currencyInUSD: number;
+	currencyInEUR: number;
+	currencyInRUB: number;
+};
